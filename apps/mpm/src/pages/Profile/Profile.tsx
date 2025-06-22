@@ -1,0 +1,49 @@
+import { PageWrapper } from '@/components/PageWrapper'
+import { Loader } from '@/components/ui/loader/Loader'
+import { Title } from '@/components/ui/title/Title'
+
+import { useAuth } from '@/hooks/auth/useAuth'
+
+import { ChangeEmailForm } from './components/ChangeEmailForm'
+import { ChangeInfoForm } from './components/ChangeInfoForm'
+import { ChangePasswordForm } from './components/ChangePasswordForm'
+import { Logout } from './components/Logout'
+import { ProfileInformation } from './components/ProfileInformation'
+
+export const Profile = () => {
+	const { user, isAuthenticated, isLoading } = useAuth()
+
+	const isProfileMissing = !user || !isAuthenticated
+
+	return (
+		<PageWrapper>
+			<div className='container mx-auto p-4'>
+				<Title className='mb-3'>Profile</Title>
+
+				{isLoading && (
+					<div className='flex items-center justify-center py-5'>
+						<Loader />
+					</div>
+				)}
+
+				{!isLoading && isProfileMissing && (
+					<div className='flex items-center justify-center pt-5 text-lg text-teal-500'>
+						Profile not found
+					</div>
+				)}
+
+				{!isLoading && !isProfileMissing && (
+					<>
+						<ProfileInformation user={user} />
+						<div className='mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+							<ChangeInfoForm />
+							<ChangeEmailForm />
+							<ChangePasswordForm />
+							<Logout />
+						</div>
+					</>
+				)}
+			</div>
+		</PageWrapper>
+	)
+}
