@@ -5,7 +5,7 @@ export const ProfileInformation = ({ user }: { user: IUserDto }) => {
 	return (
 		<div className='flex flex-col gap-4 rounded-xl bg-white p-4 dark:bg-zinc-800'>
 			<div className='flex flex-col items-center gap-2 md:items-start'>
-				<AvatarUpload profile={user} />
+				<AvatarUpload />
 				<h2 className='flex text-xl font-bold text-teal-400 md:hidden'>
 					{user?.name}
 				</h2>
