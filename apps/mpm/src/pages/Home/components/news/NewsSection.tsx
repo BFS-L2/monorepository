@@ -24,7 +24,7 @@ export const NewsSection = () => {
 	}
 
 	return (
-		<section className='pb-20'>
+		<section className='pb-10 md:pb-20'>
 			<Title className='mb-4' type='h2'>
 				Latest news
 			</Title>
