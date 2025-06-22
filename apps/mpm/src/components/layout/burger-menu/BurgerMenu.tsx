@@ -3,7 +3,6 @@ import { LogOutIcon, MenuIcon, MoonIcon, SunIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button/Button'
 
-import { BASE_URL } from '@/constants/api.constants'
 import {
 	privateHeaderItems,
 	publicBurgerMenuItems
@@ -69,7 +68,7 @@ export const BurgerMenu = () => {
 											<div className='flex w-full items-center justify-between rounded bg-white px-4 py-3 dark:bg-zinc-800'>
 												<div className='flex items-center gap-4'>
 													<img
-														src={`${BASE_URL}/uploads/${user?.avatar}`}
+														src='/default-avatar.png'
 														alt={user?.name}
 														className='h-12 w-12 rounded-lg object-cover'
 													/>
