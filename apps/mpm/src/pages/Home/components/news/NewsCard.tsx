@@ -23,7 +23,7 @@ export const NewsCard = (item: INewsItem) => {
 						rel='noopener noreferrer'
 						className='inline-block text-sm font-medium text-teal-400 hover:text-teal-300 hover:underline'
 					>
-						Читать далее →
+						Read more →
 					</a>
 				</div>
 			</div>

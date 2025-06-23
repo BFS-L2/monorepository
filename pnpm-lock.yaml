@@ -2685,10 +2685,6 @@ packages:
     resolution: {integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==}
     engines: {node: '>=10'}
 
-  semver@7.7.1:
-    resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
-    engines: {node: '>=10'}
-
   semver@7.7.2:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
@@ -5808,9 +5804,6 @@ snapshots:
 
   semver@7.6.2: {}
 
-  semver@7.7.1:
-    optional: true
-
   semver@7.7.2: {}
 
   sentence-case@2.1.1:
@@ -5845,8 +5838,8 @@ snapshots:
   sharp@0.34.1:
     dependencies:
       color: 4.2.3
-      detect-libc: 2.0.3
-      semver: 7.7.1
+      detect-libc: 2.0.4
+      semver: 7.7.2
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.34.1
       '@img/sharp-darwin-x64': 0.34.1
