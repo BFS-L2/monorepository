@@ -1,41 +1,3 @@
-// import { Navigate, Route, Routes } from 'react-router-dom'
-// import { Layout } from '@/components/layout/Layout'
-// import { ROUTES } from '@/constants/enums.constants'
-// import { useAuth } from '@/hooks/auth/useAuth'
-// import { Dashboard } from '@/pages/Dashboard/Dashboard'
-// import { Home } from '@/pages/Home/Home'
-// import { Login } from '@/pages/Login/Login'
-// import { Profile } from '@/pages/Profile/Profile'
-// import { Register } from '@/pages/Register/Register'
-// export const AppRouter = () => {
-// 	const { isAuthenticated } = useAuth()
-// 	return (
-// 		<Routes>
-// 			<Route path={ROUTES.HOME} element={<Layout />}>
-// 				<Route index element={<Home />} />
-// 				<Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
-// 				<Route path={ROUTES.PROFILE} element={<Profile />} />
-// 				<Route
-// 					path={ROUTES.REGISTER}
-// 					element={
-// 						isAuthenticated ? (
-// 							<Navigate to={ROUTES.HOME} replace />
-// 						) : (
-// 							<Register />
-// 						)
-// 					}
-// 				/>
-// 				<Route
-// 					path={ROUTES.LOGIN}
-// 					element={
-// 						isAuthenticated ? <Navigate to={ROUTES.HOME} replace /> : <Login />
-// 					}
-// 				/>
-// 			</Route>
-// 			<Route path='*' element={<Navigate to='/' replace />} />
-// 		</Routes>
-// 	)
-// }
 import { Suspense, lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
@@ -45,7 +7,6 @@ import { ROUTES } from '@/constants/enums.constants'
 
 import { useAuth } from '@/hooks/auth/useAuth'
 
-// Lazy-loaded pages
 export const Home = lazy(() =>
 	import('@/pages/Home/Home').then(module => ({ default: module.Home }))
 )
