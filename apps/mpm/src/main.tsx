@@ -20,10 +20,6 @@ const ReactQueryDevtools = lazy(() =>
 	}))
 )
 
-// <div className='flex h-screen items-center justify-center bg-zinc-900'>
-// 					<Loader size={52} />
-// 				</div>
-
 createRoot(document.getElementById('root')!).render(
 	<QueryClientProvider>
 		<AuthProvider>

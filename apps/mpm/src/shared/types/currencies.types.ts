@@ -101,6 +101,13 @@ export interface IChartDataDto {
 	price: number
 }
 
+export interface IChart {
+	Aggregated: boolean
+	Data: IChartDataDto[]
+	TimeFrom: number
+	TimeTo: number
+}
+
 export interface INewsItem {
 	imageurl: string
 	title: string

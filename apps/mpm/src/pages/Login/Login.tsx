@@ -1,6 +1,9 @@
 import { PageWrapper } from '@/components/PageWrapper'
 import { Button } from '@/components/ui/button/Button'
-import { Input } from '@/components/ui/input/Input'
+import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
+import { Title } from '@/components/ui/title/Title'
+
+import { FormInput } from '../../components/ui/formInput/FormInput'
 
 import { useLogin } from './hooks/useLogin'
 
@@ -21,46 +24,49 @@ export const Login = () => {
 					onSubmit={handleSubmit(onSubmit)}
 					className='mx-auto mt-12 flex max-w-sm flex-col gap-2 rounded-lg bg-white p-6 dark:bg-zinc-800'
 				>
-					<h2 className='mb-2 text-center text-2xl font-bold text-teal-400'>
+					<Title
+						type='h1'
+						className='mb-2 text-center text-teal-400 dark:text-teal-400'
+					>
 						Sign In
-					</h2>
-					<Input
+					</Title>
+
+					<FormInput
 						type='email'
-						{...register('email', {
-							required: 'Email is required',
-							pattern: {
-								value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-								message: 'Invalid email address'
-							}
-						})}
 						placeholder='Email'
+						register={{
+							...register('email', {
+								required: 'Email is required',
+								pattern: {
+									value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+									message: 'Invalid email address'
+								}
+							})
+						}}
 						disabled={isSubmitting}
 					/>
-					{errors.email && (
-						<p className='text-sm font-semibold text-red-500'>
-							{errors.email.message}
-						</p>
-					)}
-					<Input
+
+					<ErrorMessage message={errors?.email?.message} />
+
+					<FormInput
 						type='password'
-						{...register('password', {
-							required: 'Password is required',
-							minLength: {
-								value: 8,
-								message: 'Password must be at least 8 characters long'
-							}
-						})}
 						placeholder='Password'
+						register={{
+							...register('password', {
+								required: 'Password is required',
+								minLength: {
+									value: 8,
+									message: 'Password must be at least 8 characters long'
+								}
+							})
+						}}
 						disabled={isSubmitting}
 					/>
-					{errors.password && (
-						<p className='text-sm font-semibold text-red-500'>
-							{errors.password.message}
-						</p>
-					)}
-					{serverError && (
-						<p className='text-sm font-semibold text-red-500'>{serverError}</p>
-					)}
+
+					<ErrorMessage message={errors?.password?.message} />
+
+					<ErrorMessage message={serverError} />
+
 					<Button type='submit' variant='primary' disabled={isSubmitting}>
 						{isSubmitting ? 'Loading...' : 'Sign In'}
 					</Button>

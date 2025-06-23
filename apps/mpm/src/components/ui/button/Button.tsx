@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/tailwind.utils'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: 'primary' | 'logout'
@@ -15,7 +15,7 @@ export const Button = ({
 	return (
 		<button
 			{...props}
-			className={twMerge(
+			className={cn(
 				variant === 'primary' &&
 					'w-full cursor-pointer rounded bg-gradient-to-r from-teal-400 to-teal-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-300 hover:from-teal-300 hover:to-teal-500 disabled:cursor-not-allowed disabled:from-zinc-300 disabled:to-zinc-400 dark:disabled:from-zinc-500 dark:disabled:to-zinc-600',
 				variant === 'logout' &&

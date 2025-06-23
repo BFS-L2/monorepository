@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button/Button'
-import { Input } from '@/components/ui/input/Input'
+import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
+import { FormInput } from '@/components/ui/formInput/FormInput'
+import { Title } from '@/components/ui/title/Title'
 
 import { useChangeInfo } from '../hooks/useChangeInfo'
 
@@ -16,84 +18,83 @@ export const ChangeInfoForm = () => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			encType='multipart/form-data'
 			className='flex flex-col justify-between gap-1 rounded-xl bg-white p-4 dark:bg-zinc-800'
 		>
 			<div className='flex flex-col gap-1'>
-				<h2 className='mb-1 text-lg font-semibold text-zinc-900 dark:bg-gradient-to-r dark:from-teal-300 dark:to-teal-500 dark:bg-clip-text dark:text-transparent'>
+				<Title
+					type='h2'
+					className='mb-1 text-lg font-semibold text-teal-400 dark:text-teal-400'
+				>
 					Change Info
-				</h2>
-				<Input
+				</Title>
+
+				<FormInput
 					type='text'
 					variant='profile'
-					disabled={isSubmitting}
 					placeholder='Enter new name'
-					{...register('name', {
-						required: false,
-						pattern: {
-							value:
-								/^(?!.*(<|>|script|onerror|onload|javascript:|&#|&lt;|&gt;)).*$/i,
-							message:
-								'Forbidden to enter HTML tags or potentially dangerous content'
-						},
-						minLength: {
-							value: 3,
-							message: 'Name must be at least 3 characters long'
-						}
-					})}
+					register={{
+						...register('name', {
+							required: false,
+							pattern: {
+								value:
+									/^(?!.*(<|>|script|onerror|onload|javascript:|&#|&lt;|&gt;)).*$/i,
+								message:
+									'Forbidden to enter HTML tags or potentially dangerous content'
+							},
+							minLength: {
+								value: 3,
+								message: 'Name must be at least 3 characters long'
+							}
+						})
+					}}
+					disabled={isSubmitting}
 				/>
-				{errors.name && (
-					<p className='text-sm font-semibold text-red-500'>
-						{errors.name.message}
-					</p>
-				)}
-				<Input
+
+				<ErrorMessage message={errors?.name?.message} />
+
+				<FormInput
 					type='text'
 					variant='profile'
-					disabled={isSubmitting}
 					placeholder='Enter new lastName'
-					{...register('lastName', {
-						required: false,
-						pattern: {
-							value:
-								/^(?!.*(<|>|script|onerror|onload|javascript:|&#|&lt;|&gt;)).*$/i,
-							message:
-								'Forbidden to enter HTML tags or potentially dangerous content'
-						},
-						minLength: {
-							value: 3,
-							message: 'LastName must be at least 3 characters long'
-						}
-					})}
+					register={{
+						...register('lastName', {
+							required: false,
+							pattern: {
+								value:
+									/^(?!.*(<|>|script|onerror|onload|javascript:|&#|&lt;|&gt;)).*$/i,
+								message:
+									'Forbidden to enter HTML tags or potentially dangerous content'
+							},
+							minLength: {
+								value: 3,
+								message: 'LastName must be at least 3 characters long'
+							}
+						})
+					}}
+					disabled={isSubmitting}
 				/>
-				{errors.lastName && (
-					<p className='text-sm font-semibold text-red-500'>
-						{errors.lastName.message}
-					</p>
-				)}
 
-				<Input
+				<ErrorMessage message={errors?.lastName?.message} />
+
+				<FormInput
 					type='text'
 					variant='profile'
-					disabled={isSubmitting}
 					placeholder='Enter new phone'
-					{...register('phone', {
-						required: false,
-						pattern: {
-							value: /^\+\d{11}$/,
-							message: 'Invalid phone number'
-						}
-					})}
+					register={{
+						...register('phone', {
+							required: false,
+							pattern: {
+								value: /^\+\d{11}$/,
+								message: 'Invalid phone number'
+							}
+						})
+					}}
+					disabled={isSubmitting}
 				/>
-				{errors.phone && (
-					<p className='text-sm font-semibold text-red-500'>
-						{errors.phone.message}
-					</p>
-				)}
 
-				{serverError && (
-					<p className='text-sm font-semibold text-red-500'>{serverError}</p>
-				)}
+				<ErrorMessage message={errors?.phone?.message} />
+
+				<ErrorMessage message={serverError} />
 			</div>
 			<Button
 				type='submit'
