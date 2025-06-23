@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button/Button'
+import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
 import { Input } from '@/components/ui/input/Input'
+import { Title } from '@/components/ui/title/Title'
 
 import { useSellCrypto } from '../hooks/useSellCrypto'
 
@@ -30,9 +32,12 @@ export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
 
 	return (
 		<div className='flex w-full flex-col items-center rounded-xl bg-white p-6 text-teal-400 dark:bg-zinc-800'>
-			<h2 className='mb-4 flex items-center bg-gradient-to-r from-teal-300 to-teal-500 bg-clip-text text-start text-xl font-bold text-transparent'>
+			<Title
+				type='h2'
+				className='mb-4 flex items-center text-xl text-teal-400 dark:text-teal-400'
+			>
 				Sell Crypto
-			</h2>
+			</Title>
 			<form onSubmit={handleSubmitSell} className='flex w-full flex-col gap-1'>
 				<label className='text-sm text-zinc-400' htmlFor='coinAmount'>
 					Amount coin
@@ -59,7 +64,7 @@ export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
 					<span className='font-mono text-teal-300'>{coinPrice} USD</span>
 				</span>
 
-				{error && <span className='text-sm text-red-500'>{error}</span>}
+				<ErrorMessage message={error} />
 
 				<select
 					name='currency'

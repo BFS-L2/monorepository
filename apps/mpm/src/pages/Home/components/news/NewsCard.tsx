@@ -6,7 +6,6 @@ export const NewsCard = (item: INewsItem) => {
 			<img
 				src={item.imageurl}
 				alt={item.title || 'News image'}
-				loading='lazy'
 				className='aspect-[4/3] w-full object-cover'
 			/>
 			<div className='flex grow flex-col p-4'>

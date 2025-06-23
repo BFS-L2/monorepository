@@ -2,7 +2,6 @@ import { PageWrapper } from '@/components/PageWrapper'
 import { Loader } from '@/components/ui/loader/Loader'
 import { Title } from '@/components/ui/title/Title'
 
-import { useTransactions } from '@/hooks/api/useTransactions'
 import { useWallet } from '@/hooks/api/useWallet'
 import { useAuth } from '@/hooks/auth/useAuth'
 
@@ -17,7 +16,7 @@ export const Dashboard = () => {
 	const { isAuthenticated } = useAuth()
 
 	const { wallet, isLoading } = useWallet()
-	const { transactions } = useTransactions()
+
 	const { currenciesData } = useCurrenciesData()
 
 	const isWalletMissing = !isAuthenticated && !wallet
@@ -46,16 +45,7 @@ export const Dashboard = () => {
 							<BuyCrypto wallet={wallet} currenciesData={currenciesData} />
 							<SellCrypto wallet={wallet} currenciesData={currenciesData} />
 						</div>
-						<TransactionsSection
-							transactions={
-								Array.isArray(transactions)
-									? transactions
-									: transactions
-										? [transactions]
-										: []
-							}
-							currenciesData={currenciesData}
-						/>
+						<TransactionsSection currenciesData={currenciesData} />
 					</section>
 				</PageWrapper>
 			)}
