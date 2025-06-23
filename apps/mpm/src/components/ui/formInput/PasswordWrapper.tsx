@@ -1,4 +1,4 @@
-import { Eye, EyeClosed } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 
 interface IPasswordWrapper {
 	children: React.ReactNode
@@ -19,7 +19,7 @@ export const PasswordWrapper = ({
 				className='absolute right-3 bottom-2 cursor-pointer text-zinc-900 dark:text-white'
 				onClick={handleShowPassword}
 			>
-				{showPassword ? <Eye size={20} /> : <EyeClosed size={20} />}
+				{showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
 			</button>
 		</div>
 	)

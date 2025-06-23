@@ -7,12 +7,7 @@ import { QueryClientProvider } from '@/providers/QueryClientProvider'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 
 import './assets/styles/global.css'
-
-const AppRouter = lazy(() =>
-	import('@/routes/AppRouter').then(module => ({
-		default: module.AppRouter
-	}))
-)
+import { AppRouter } from './routes/AppRouter'
 
 const ReactQueryDevtools = lazy(() =>
 	import('@tanstack/react-query-devtools').then(m => ({
@@ -25,12 +20,12 @@ createRoot(document.getElementById('root')!).render(
 		<AuthProvider>
 			<ThemeProvider>
 				<BrowserRouter>
-					<Suspense fallback={null}>
+					<Suspense>
 						<AppRouter />
-						{import.meta.env.DEV && (
-							<Suspense fallback={null}>
-								<ReactQueryDevtools initialIsOpen={false} />
-							</Suspense>
+					</Suspense>
+					<Suspense>
+						{import.meta.env.VITE_DEV && (
+							<ReactQueryDevtools initialIsOpen={false} />
 						)}
 					</Suspense>
 				</BrowserRouter>

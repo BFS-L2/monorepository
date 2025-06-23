@@ -16,8 +16,13 @@ export default defineConfig({
 			output: {
 				manualChunks: {
 					vendor: ['react', 'react-dom'],
-					ui: ['lucide-react'],
-					chart: ['chart.js', 'react-chartjs-2']
+					ui: ['lucide-react', 'framer-motion', 'clsx', 'tailwind-merge'],
+					chart: ['chart.js', 'react-chartjs-2'],
+					router: ['react-router-dom'],
+					form: ['react-hook-form'],
+					query: ['@tanstack/react-query', '@tanstack/react-query-devtools'],
+					state: ['zustand'],
+					swiper: ['swiper']
 				}
 			}
 		}
