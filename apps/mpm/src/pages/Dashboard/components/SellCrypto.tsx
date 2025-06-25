@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button/Button'
 import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
-import { Input } from '@/components/ui/input/Input'
+import { FormInput } from '@/components/ui/formInput/FormInput'
+import { Hr } from '@/components/ui/hr/Hr'
 import { Title } from '@/components/ui/title/Title'
 
 import { useSellCrypto } from '../hooks/useSellCrypto'
@@ -32,34 +33,33 @@ export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
 
 	return (
 		<div className='flex w-full flex-col items-center rounded-xl bg-white p-6 text-teal-400 dark:bg-zinc-800'>
-			<Title
-				type='h2'
-				className='mb-4 flex items-center text-xl text-teal-400 dark:text-teal-400'
-			>
-				Sell Crypto
-			</Title>
-			<form onSubmit={handleSubmitSell} className='flex w-full flex-col gap-1'>
-				<label className='text-sm text-zinc-400' htmlFor='coinAmount'>
-					Amount coin
-				</label>
-				<Input
+			<form onSubmit={handleSubmitSell} className='flex w-full flex-col gap-2'>
+				<Title
+					type='h2'
+					className='mb-2 text-xl text-teal-400 dark:text-teal-400'
+				>
+					Sell Crypto
+				</Title>
+
+				<Hr />
+
+				<FormInput
 					type='text'
-					placeholder='Enter amount'
+					label='Coin'
+					placeholder='Enter amount coin:'
 					value={coinAmount}
 					onChange={handleCoinAmountChange}
 				/>
 
-				<label className='text-sm text-zinc-400' htmlFor='usdAmount'>
-					Amount USD
-				</label>
-				<Input
+				<FormInput
 					type='text'
-					placeholder='Enter amount'
+					label='USD'
+					placeholder='Enter amount usd:'
 					value={usdAmount}
 					onChange={handleUsdAmountChange}
 				/>
 
-				<span className='text-sm text-zinc-400'>
+				<span className='text-sm text-zinc-200'>
 					Coin price:{' '}
 					<span className='font-mono text-teal-300'>{coinPrice} USD</span>
 				</span>
@@ -83,6 +83,7 @@ export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
 							)
 					)}
 				</select>
+
 				<Button
 					type='submit'
 					variant='primary'

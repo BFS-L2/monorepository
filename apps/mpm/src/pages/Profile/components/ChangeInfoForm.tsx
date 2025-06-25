@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button/Button'
 import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
 import { FormInput } from '@/components/ui/formInput/FormInput'
+import { Hr } from '@/components/ui/hr/Hr'
 import { Title } from '@/components/ui/title/Title'
 
 import { useChangeInfo } from '../hooks/useChangeInfo'
@@ -20,7 +21,7 @@ export const ChangeInfoForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className='flex flex-col justify-between gap-1 rounded-xl bg-white p-4 dark:bg-zinc-800'
 		>
-			<div className='flex flex-col gap-1'>
+			<div className='flex flex-col gap-2'>
 				<Title
 					type='h2'
 					className='mb-1 text-lg font-semibold text-teal-400 dark:text-teal-400'
@@ -28,10 +29,13 @@ export const ChangeInfoForm = () => {
 					Change Info
 				</Title>
 
+				<Hr />
+
 				<FormInput
 					type='text'
 					variant='profile'
-					placeholder='Enter new name'
+					label='Name'
+					placeholder='Enter new name:'
 					register={{
 						...register('name', {
 							required: false,
@@ -55,7 +59,8 @@ export const ChangeInfoForm = () => {
 				<FormInput
 					type='text'
 					variant='profile'
-					placeholder='Enter new lastName'
+					label='Last name'
+					placeholder='Enter new last name:'
 					register={{
 						...register('lastName', {
 							required: false,
@@ -79,7 +84,8 @@ export const ChangeInfoForm = () => {
 				<FormInput
 					type='text'
 					variant='profile'
-					placeholder='Enter new phone'
+					label='Phone'
+					placeholder='Enter new phone:'
 					register={{
 						...register('phone', {
 							required: false,
@@ -98,11 +104,11 @@ export const ChangeInfoForm = () => {
 			</div>
 			<Button
 				type='submit'
-				disabled={isSubmitting}
 				variant='primary'
-				className='mt-2 md:w-52'
+				className='mt-2 md:w-30'
+				disabled={isSubmitting}
 			>
-				{isSubmitting ? 'Loading...' : 'Update'}
+				Update
 			</Button>
 		</form>
 	)

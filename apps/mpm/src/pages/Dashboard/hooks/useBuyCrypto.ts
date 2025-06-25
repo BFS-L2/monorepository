@@ -41,6 +41,7 @@ export const useBuyCrypto = ({ wallet, currenciesData }: useBuyCrypto) => {
 
 	const handleUsdAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
+
 		if (isValidNumber(value)) {
 			setUsdAmount(value)
 		}
@@ -71,6 +72,16 @@ export const useBuyCrypto = ({ wallet, currenciesData }: useBuyCrypto) => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
+		if (selectedCoin === null) {
+			setError('Coin not selected')
+			return
+		}
+
+		if (coinAmount === '' || usdAmount === '') {
+			setError('Values ​​not set')
+			return
+		}
+
 		const coin = currenciesData?.find(
 			c => c.CoinInfo.Id === selectedCoin?.CoinInfo.Id
 		)
@@ -89,6 +100,7 @@ export const useBuyCrypto = ({ wallet, currenciesData }: useBuyCrypto) => {
 			amount: coinAmount,
 			price: parsePrice(coin?.DISPLAY?.USD?.PRICE).toFixed(8)
 		})
+
 		setError('')
 		setCoinAmount('')
 		setUsdAmount('')

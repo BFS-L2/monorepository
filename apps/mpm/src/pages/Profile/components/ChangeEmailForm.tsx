@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button/Button'
 import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
 import { FormInput } from '@/components/ui/formInput/FormInput'
+import { Hr } from '@/components/ui/hr/Hr'
 import { Title } from '@/components/ui/title/Title'
 
 import { useChangeEmail } from '../hooks/useChangeEmail'
@@ -20,7 +21,7 @@ export const ChangeEmailForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className='flex flex-col justify-between gap-2 rounded-xl bg-white p-4 dark:bg-zinc-800'
 		>
-			<div className='flex flex-col gap-1'>
+			<div className='flex flex-col gap-2'>
 				<Title
 					type='h2'
 					className='mb-1 text-lg font-semibold text-teal-400 dark:text-teal-400'
@@ -28,10 +29,13 @@ export const ChangeEmailForm = () => {
 					Change Email
 				</Title>
 
+				<Hr />
+
 				<FormInput
 					type='email'
 					variant='profile'
-					placeholder='Enter new email'
+					label='Email'
+					placeholder='Enter new email:'
 					register={{
 						...register('email', {
 							required: 'Email is required',
@@ -49,7 +53,8 @@ export const ChangeEmailForm = () => {
 				<FormInput
 					type='password'
 					variant='profile'
-					placeholder='Enter current password'
+					label='Password'
+					placeholder='Enter current password:'
 					register={{
 						...register('password', {
 							required: 'Password is required',
@@ -69,10 +74,10 @@ export const ChangeEmailForm = () => {
 			<Button
 				type='submit'
 				variant='primary'
-				className='mt-2 md:w-52'
+				className='mt-2 md:w-30'
 				disabled={isSubmitting}
 			>
-				{isSubmitting ? 'Loading...' : 'Update'}
+				Update
 			</Button>
 		</form>
 	)

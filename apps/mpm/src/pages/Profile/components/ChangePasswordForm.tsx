@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button/Button'
 import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
 import { FormInput } from '@/components/ui/formInput/FormInput'
+import { Hr } from '@/components/ui/hr/Hr'
 import { Title } from '@/components/ui/title/Title'
 
 import { useChangePassword } from '../hooks/useChangePassword'
@@ -20,7 +21,7 @@ export const ChangePasswordForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className='flex flex-col justify-between gap-1 rounded-xl bg-white p-4 dark:bg-zinc-800'
 		>
-			<div className='flex flex-col gap-1'>
+			<div className='flex flex-col gap-2'>
 				<Title
 					type='h2'
 					className='mb-1 text-lg font-semibold text-teal-400 dark:text-teal-400'
@@ -28,10 +29,13 @@ export const ChangePasswordForm = () => {
 					Change Password
 				</Title>
 
+				<Hr />
+
 				<FormInput
 					type='password'
 					variant='profile'
-					placeholder='Enter current password'
+					label='Current password'
+					placeholder='Enter current password:'
 					register={{
 						...register('oldPassword', {
 							required: 'Old password is required',
@@ -49,7 +53,8 @@ export const ChangePasswordForm = () => {
 				<FormInput
 					type='password'
 					variant='profile'
-					placeholder='Enter new password'
+					label='New password'
+					placeholder='Enter new password:'
 					register={{
 						...register('newPassword', {
 							required: 'New password is required',
@@ -67,7 +72,8 @@ export const ChangePasswordForm = () => {
 				<FormInput
 					type='password'
 					variant='profile'
-					placeholder='Enter new password again'
+					label='New password'
+					placeholder='Enter new password again:'
 					register={{
 						...register('repeatNewPassword', {
 							required: 'Confirm new password is required',
@@ -87,11 +93,11 @@ export const ChangePasswordForm = () => {
 			</div>
 			<Button
 				type='submit'
-				disabled={isSubmitting}
 				variant='primary'
-				className='mt-2 md:w-52'
+				className='mt-2 md:w-30'
+				disabled={isSubmitting}
 			>
-				{isSubmitting ? 'Loading...' : 'Update'}
+				Update
 			</Button>
 		</form>
 	)

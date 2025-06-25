@@ -1,6 +1,7 @@
 import { PageWrapper } from '@/components/PageWrapper'
 import { Button } from '@/components/ui/button/Button'
 import { FormInput } from '@/components/ui/formInput/FormInput'
+import { Hr } from '@/components/ui/hr/Hr'
 import { Title } from '@/components/ui/title/Title'
 
 import { ErrorMessage } from '../../components/ui/error/ErrorMessage'
@@ -22,18 +23,18 @@ export const Register = () => {
 			<div className='px-4'>
 				<form
 					onSubmit={handleSubmit(onSubmit)}
-					className='mx-auto mt-12 flex max-w-sm flex-col gap-2 rounded-lg bg-white p-6 dark:bg-zinc-800'
+					className='mx-auto my-12 flex max-w-md flex-col gap-2 rounded-lg bg-white p-6 dark:bg-zinc-800'
 				>
-					<Title
-						type='h1'
-						className='mb-2 text-center text-teal-400 dark:text-teal-400'
-					>
+					<Title type='h1' className='mb-1 text-teal-400 dark:text-teal-400'>
 						Sign Up
 					</Title>
 
+					<Hr />
+
 					<FormInput
 						type='text'
-						placeholder='Name'
+						label='Name'
+						placeholder='Enter name:'
 						register={{
 							...register('name', {
 								required: 'Name is required',
@@ -56,7 +57,8 @@ export const Register = () => {
 
 					<FormInput
 						type='email'
-						placeholder='Email'
+						label='Email'
+						placeholder='Enter email:'
 						register={{
 							...register('email', {
 								required: 'Email is required',
@@ -73,7 +75,8 @@ export const Register = () => {
 
 					<FormInput
 						type='password'
-						placeholder='Password'
+						label='Password'
+						placeholder='Enter password:'
 						register={{
 							...register('password', {
 								required: 'Password is required',
@@ -90,8 +93,13 @@ export const Register = () => {
 
 					<ErrorMessage message={serverError} />
 
-					<Button type='submit' variant='primary' disabled={isSubmitting}>
-						{isSubmitting ? 'Loading...' : 'Sign Up'}
+					<Button
+						type='submit'
+						className='mt-1 w-30'
+						variant='primary'
+						disabled={isSubmitting}
+					>
+						Sign Up
 					</Button>
 				</form>
 			</div>
