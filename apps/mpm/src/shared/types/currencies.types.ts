@@ -86,13 +86,13 @@ export interface ICurrencyDto {
 export interface ISellCryptoDto {
 	symbol: string
 	amount: string
-	price: string
+	price: number
 }
 
 export interface IBuyCryptoDto {
 	symbol: string
 	amount: string
-	price: string
+	price: number
 }
 
 export interface IChartDataDto {

@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button/Button'
 import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
 import { FormInput } from '@/components/ui/formInput/FormInput'
 import { Hr } from '@/components/ui/hr/Hr'
+import { Select } from '@/components/ui/select/Select'
 import { Title } from '@/components/ui/title/Title'
 
 import { useBuyCrypto } from '../hooks/useBuyCrypto'
@@ -16,15 +17,16 @@ interface IBuyCrypto {
 
 export const BuyCrypto = ({ wallet, currenciesData }: IBuyCrypto) => {
 	const {
-		selectedCoin,
-		coinAmount,
-		usdAmount,
-		coinPrice,
-		handleCoinAmountChange,
-		handleUsdAmountChange,
-		handleCoinSelect,
 		handleSubmit,
-		error
+		coinAmount,
+		handleCoinAmountChange,
+		usdAmount,
+		handleUsdAmountChange,
+		coinPrice,
+		error,
+		currencyOptions,
+		selectedCoin,
+		setSelectedCoin
 	} = useBuyCrypto({
 		wallet,
 		currenciesData
@@ -60,38 +62,20 @@ export const BuyCrypto = ({ wallet, currenciesData }: IBuyCrypto) => {
 
 				<span className='ml-1 text-sm text-zinc-200'>
 					Coin price:{' '}
-					<span className='font-mono text-teal-300'>{coinPrice()} USD</span>
+					<span className='font-mono text-teal-300'>
+						{coinPrice && `${coinPrice} USD`}
+					</span>
 				</span>
 
-				<select
-					name='currency'
-					id='currency'
-					value={selectedCoin?.CoinInfo.Id || ''}
-					onChange={handleCoinSelect}
-					className='w-full rounded border border-zinc-300 p-2 text-sm text-zinc-900 placeholder-zinc-500 transition-all duration-300 focus:ring-1 focus:ring-teal-400 focus:outline-none dark:border-none dark:bg-zinc-900 dark:text-white'
-				>
-					<option value=''>Select coin</option>
-					{currenciesData?.map(
-						currency =>
-							currency.DISPLAY?.USD?.PRICE !== null &&
-							currency.DISPLAY?.USD?.PRICE !== undefined && (
-								<option key={currency.CoinInfo.Id} value={currency.CoinInfo.Id}>
-									{currency.CoinInfo.Name}
-								</option>
-							)
-					)}
-				</select>
+				<Select
+					options={currencyOptions}
+					value={selectedCoin}
+					onChange={setSelectedCoin}
+				/>
 
 				<ErrorMessage message={error} />
 
-				<Button
-					type='submit'
-					variant='primary'
-					className='mt-1 md:w-52'
-					disabled={
-						!selectedCoin || !coinAmount || !usdAmount || Number(usdAmount) <= 0
-					}
-				>
+				<Button type='submit' variant='primary' className='mt-1 md:w-52'>
 					Buy
 				</Button>
 			</form>

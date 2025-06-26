@@ -2,10 +2,9 @@ import { PageWrapper } from '@/components/PageWrapper'
 import { Loader } from '@/components/ui/loader/Loader'
 import { Title } from '@/components/ui/title/Title'
 
+import { useCurrenciesData } from '@/hooks/api/useCurrencies'
 import { useWallet } from '@/hooks/api/useWallet'
 import { useAuth } from '@/hooks/auth/useAuth'
-
-import { useCurrenciesData } from '../../hooks/api/useCurrencies'
 
 import { BuyCrypto } from './components/BuyCrypto'
 import { SellCrypto } from './components/SellCrypto'

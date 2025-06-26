@@ -1,8 +1,8 @@
-export const ErrorMessage = ({
-	message
-}: {
-	message: string | undefined | null
-}) => {
+interface ErrorMessageProps {
+	message?: string | null | undefined
+}
+
+export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
 	return (
 		<>
 			{message && (

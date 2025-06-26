@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button/Button'
 import { ErrorMessage } from '@/components/ui/error/ErrorMessage'
 import { FormInput } from '@/components/ui/formInput/FormInput'
 import { Hr } from '@/components/ui/hr/Hr'
+import { Select } from '@/components/ui/select/Select'
 import { Title } from '@/components/ui/title/Title'
 
 import { useSellCrypto } from '../hooks/useSellCrypto'
@@ -16,20 +17,20 @@ interface ISellCrypto {
 
 export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
 	const {
-		coinPrice,
-		coinAmount,
-		usdAmount,
-		selectedCoin,
-		handleCoinAmountChange,
-		handleUsdAmountChange,
-		handleCoinSelect,
 		handleSubmitSell,
+		coinAmount,
+		handleCoinAmountChange,
+		usdAmount,
+		handleUsdAmountChange,
+		coinPrice,
+		walletBalanceOptions,
+		selectedCoin,
+		setSelectedCoin,
 		error
 	} = useSellCrypto({
 		wallet,
 		currenciesData
 	})
-	const arrayCryptoBalances = Object.entries(wallet?.cryptoBalances || {})
 
 	return (
 		<div className='flex w-full flex-col items-center rounded-xl bg-white p-6 text-teal-400 dark:bg-zinc-800'>
@@ -61,37 +62,20 @@ export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
 
 				<span className='text-sm text-zinc-200'>
 					Coin price:{' '}
-					<span className='font-mono text-teal-300'>{coinPrice} USD</span>
+					<span className='font-mono text-teal-300'>
+						{coinPrice ? `${coinPrice} USD` : 'No data available'}
+					</span>
 				</span>
+
+				<Select
+					options={walletBalanceOptions}
+					value={selectedCoin}
+					onChange={setSelectedCoin}
+				/>
 
 				<ErrorMessage message={error} />
 
-				<select
-					name='currency'
-					id='currency'
-					value={selectedCoin || ''}
-					onChange={handleCoinSelect}
-					className='mb-2 w-full rounded border border-zinc-300 bg-white p-2 text-sm text-zinc-900 placeholder-zinc-500 transition-all duration-300 focus:ring-1 focus:ring-teal-400 focus:outline-none dark:border-none dark:bg-zinc-900 dark:text-white'
-				>
-					<option value=''>Select coin</option>
-					{arrayCryptoBalances.map(
-						([symbol, amount]) =>
-							amount !== 0 && (
-								<option key={symbol} value={symbol}>
-									{symbol}
-								</option>
-							)
-					)}
-				</select>
-
-				<Button
-					type='submit'
-					variant='primary'
-					className='md:w-52'
-					disabled={
-						!selectedCoin || !coinAmount || !usdAmount || Number(usdAmount) <= 0
-					}
-				>
+				<Button type='submit' variant='primary' className='mt-1 md:w-52'>
 					Sell
 				</Button>
 			</form>

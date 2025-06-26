@@ -1,6 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
-import { useState } from 'react'
+import axios from 'axios'
+import { useCallback, useEffect, useState } from 'react'
 
+import { useCurrencyOptions } from '@/utils/mapCurrencyToOptions.utils'
 import { parsePrice } from '@/utils/parsePrice.utils'
 import { queryClient } from '@/utils/queryClient'
 
@@ -8,72 +10,99 @@ import { walletService } from '@/services/wallet.service'
 import type { ICurrency } from '@/shared/types/currencies.types'
 import type { IUserWalletDto } from '@/shared/types/user.types'
 
-interface useBuyCrypto {
+interface IUseBuyCrypto {
 	currenciesData: ICurrency[] | undefined
 	wallet: IUserWalletDto | undefined
 }
 
-export const useBuyCrypto = ({ wallet, currenciesData }: useBuyCrypto) => {
-	const [selectedCoin, setSelectedCoin] = useState<ICurrency | null>(null)
+export const useBuyCrypto = ({ wallet, currenciesData }: IUseBuyCrypto) => {
+	const currencyOptions = useCurrencyOptions(currenciesData)
 
-	const [coinAmount, setCoinAmount] = useState('')
-	const [usdAmount, setUsdAmount] = useState('')
+	const [selectedCoin, setSelectedCoin] = useState<{
+		label: string
+		value: string
+	} | null>(null)
 
+	const [coinAmount, setCoinAmount] = useState<string>('')
+	const [usdAmount, setUsdAmount] = useState<string>('')
 	const [error, setError] = useState('')
+
+	useEffect(() => {
+		if (selectedCoin) {
+			setError('')
+			setCoinAmount('')
+			setUsdAmount('')
+		}
+	}, [selectedCoin])
 
 	const isValidNumber = (val: string) => /^(\d+(\.\d{0,8})?)?$/.test(val)
 
-	const coinPrice = () => {
-		return selectedCoin ? parsePrice(selectedCoin.DISPLAY?.USD?.PRICE) : 0
-	}
+	const coinPrice = selectedCoin ? parsePrice(selectedCoin.value) : null
+	const currentCoin = selectedCoin ? selectedCoin.label : null
 
-	const handleCoinAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value
-		if (isValidNumber(value)) {
-			setCoinAmount(value)
-		}
-		if (coinPrice && value) {
-			setUsdAmount((parseFloat(value) * coinPrice()).toFixed(2))
-		} else {
-			setUsdAmount('')
-		}
-	}
+	const handleCoinAmountChange = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>) => {
+			const value = e.target.value
 
-	const handleUsdAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value
+			if (isValidNumber(value)) {
+				setCoinAmount(value)
+			}
+			if (coinPrice && value) {
+				const calculatedCoin = (parseFloat(value) * coinPrice).toFixed(2)
+				setUsdAmount(calculatedCoin)
+			} else {
+				setUsdAmount('')
+			}
+		},
+		[coinPrice]
+	)
 
-		if (isValidNumber(value)) {
-			setUsdAmount(value)
-		}
-		if (coinPrice && value) {
-			setCoinAmount((parseFloat(value) / coinPrice()).toFixed(8))
-		} else {
-			setCoinAmount('')
-		}
-	}
+	const handleUsdAmountChange = useCallback(
+		(e: React.ChangeEvent<HTMLInputElement>) => {
+			const value = e.target.value
 
-	const handleCoinSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const coin = currenciesData?.find(c => c.CoinInfo.Id === e.target.value)
-		setSelectedCoin(coin || null)
-
-		setError('')
-		setCoinAmount('')
-		setUsdAmount('')
-	}
+			if (isValidNumber(value)) {
+				setUsdAmount(value)
+			}
+			if (coinPrice && value) {
+				const calculatedUSD = (parseFloat(value) / coinPrice).toFixed(8)
+				setCoinAmount(calculatedUSD)
+			} else {
+				setCoinAmount('')
+			}
+		},
+		[coinPrice]
+	)
 
 	const { mutate: buyCrypto } = useMutation({
 		mutationFn: walletService.buyCrypto,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['wallet'] })
 			queryClient.invalidateQueries({ queryKey: ['transactions'] })
+
+			setError('')
+			setCoinAmount('')
+			setUsdAmount('')
+		},
+		onError: error => {
+			if (axios.isAxiosError(error)) {
+				const message =
+					error.response?.data.details ||
+					error.response?.data?.message ||
+					error.response?.data?.error ||
+					'Server error'
+				setError(message)
+			} else {
+				setError('Unexpected error')
+			}
 		}
 	})
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		if (selectedCoin === null) {
-			setError('Coin not selected')
+		if (coinPrice === null || currentCoin === null) {
+			setError('No data available')
 			return
 		}
 
@@ -82,40 +111,34 @@ export const useBuyCrypto = ({ wallet, currenciesData }: useBuyCrypto) => {
 			return
 		}
 
-		const coin = currenciesData?.find(
-			c => c.CoinInfo.Id === selectedCoin?.CoinInfo.Id
-		)
-
 		if (
 			wallet &&
 			wallet?.usdBalance &&
 			wallet?.usdBalance < Number(usdAmount)
 		) {
-			setError('Insufficient funds')
+			setError(
+				`Insufficient funds, your balance: ${wallet?.usdBalance.toFixed(2)}$`
+			)
 			return
 		}
 
 		buyCrypto({
-			symbol: coin?.CoinInfo.Name || '',
+			symbol: currentCoin,
 			amount: coinAmount,
-			price: parsePrice(coin?.DISPLAY?.USD?.PRICE).toFixed(8)
+			price: coinPrice
 		})
-
-		setError('')
-		setCoinAmount('')
-		setUsdAmount('')
 	}
 
 	return {
-		selectedCoin,
+		handleSubmit,
 		coinAmount,
+		handleCoinAmountChange,
 		usdAmount,
+		handleUsdAmountChange,
 		coinPrice,
 		error,
-		handleCoinAmountChange,
-		handleUsdAmountChange,
-		handleCoinSelect,
-		currenciesData,
-		handleSubmit
+		currencyOptions,
+		selectedCoin,
+		setSelectedCoin
 	}
 }
