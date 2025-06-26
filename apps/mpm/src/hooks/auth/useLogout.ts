@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { ROUTES } from '@/constants/enums.constants'
@@ -13,6 +14,9 @@ export const useLogout = (handleShowMenu?: () => void) => {
 		if (handleShowMenu) {
 			handleShowMenu()
 		}
+
+		toast.success('Successful logout')
+
 		navigate(ROUTES.LOGIN)
 	}, [navigate, handleShowMenu])
 

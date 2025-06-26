@@ -6,7 +6,7 @@ import { Title } from '@/components/ui/title/Title'
 
 import { FormInput } from '../../components/ui/formInput/FormInput'
 
-import { useLogin } from './hooks/useLogin'
+import { useLogin } from './useLogin'
 
 export const Login = () => {
 	const {

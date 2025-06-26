@@ -4,7 +4,7 @@ import { Loader } from '@/components/ui/loader/Loader'
 
 import { useHistoryData } from '@/hooks/api/useHistory'
 
-import { useLineChart } from './useLineChart'
+import { useLineChart } from '../../hooks/useLineChart'
 
 export const CryptoLineChart = ({ coin }: { coin: string }) => {
 	const { historyData, isLoading } = useHistoryData(coin)

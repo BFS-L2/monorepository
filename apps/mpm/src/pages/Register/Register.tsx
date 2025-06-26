@@ -6,7 +6,7 @@ import { Title } from '@/components/ui/title/Title'
 
 import { ErrorMessage } from '../../components/ui/error/ErrorMessage'
 
-import { useRegister } from './hooks/useRegister'
+import { useRegister } from './useRegister'
 
 export const Register = () => {
 	const {

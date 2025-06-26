@@ -6,7 +6,7 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
 	return (
 		<>
 			{message && (
-				<p className='text-sm font-semibold text-red-500'>{message}</p>
+				<p className='text-sm font-semibold text-red-500'>Error: {message}</p>
 			)}
 		</>
 	)

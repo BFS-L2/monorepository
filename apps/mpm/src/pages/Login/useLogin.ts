@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '@/hooks/auth/useAuth'
@@ -26,6 +27,8 @@ export const useLogin = () => {
 	const { mutate: loginMutation } = useMutation({
 		mutationFn: authService.login,
 		onSuccess: () => {
+			toast.success('Login successful')
+
 			refetch()
 			reset()
 			navigate('/')

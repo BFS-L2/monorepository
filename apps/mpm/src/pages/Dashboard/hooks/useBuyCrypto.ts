@@ -1,11 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
-import { useCurrencyOptions } from '@/utils/mapCurrencyToOptions.utils'
-import { parsePrice } from '@/utils/parsePrice.utils'
 import { queryClient } from '@/utils/queryClient'
 
+import { useCoinConverter } from './useCoinConverter'
+import { useCurrencyOptions } from '@/pages/Dashboard/hooks/useCurrencyToOptions'
 import { walletService } from '@/services/wallet.service'
 import type { ICurrency } from '@/shared/types/currencies.types'
 import type { IUserWalletDto } from '@/shared/types/user.types'
@@ -23,8 +24,17 @@ export const useBuyCrypto = ({ wallet, currenciesData }: IUseBuyCrypto) => {
 		value: string
 	} | null>(null)
 
-	const [coinAmount, setCoinAmount] = useState<string>('')
-	const [usdAmount, setUsdAmount] = useState<string>('')
+	const {
+		coinAmount,
+		setCoinAmount,
+		usdAmount,
+		setUsdAmount,
+		coinPrice,
+		currentCoin,
+		handleCoinAmountChange,
+		handleUsdAmountChange
+	} = useCoinConverter({ selectedCoin, type: 'buy' })
+
 	const [error, setError] = useState('')
 
 	useEffect(() => {
@@ -35,50 +45,13 @@ export const useBuyCrypto = ({ wallet, currenciesData }: IUseBuyCrypto) => {
 		}
 	}, [selectedCoin])
 
-	const isValidNumber = (val: string) => /^(\d+(\.\d{0,8})?)?$/.test(val)
-
-	const coinPrice = selectedCoin ? parsePrice(selectedCoin.value) : null
-	const currentCoin = selectedCoin ? selectedCoin.label : null
-
-	const handleCoinAmountChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			const value = e.target.value
-
-			if (isValidNumber(value)) {
-				setCoinAmount(value)
-			}
-			if (coinPrice && value) {
-				const calculatedCoin = (parseFloat(value) * coinPrice).toFixed(2)
-				setUsdAmount(calculatedCoin)
-			} else {
-				setUsdAmount('')
-			}
-		},
-		[coinPrice]
-	)
-
-	const handleUsdAmountChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			const value = e.target.value
-
-			if (isValidNumber(value)) {
-				setUsdAmount(value)
-			}
-			if (coinPrice && value) {
-				const calculatedUSD = (parseFloat(value) / coinPrice).toFixed(8)
-				setCoinAmount(calculatedUSD)
-			} else {
-				setCoinAmount('')
-			}
-		},
-		[coinPrice]
-	)
-
 	const { mutate: buyCrypto } = useMutation({
 		mutationFn: walletService.buyCrypto,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['wallet'] })
 			queryClient.invalidateQueries({ queryKey: ['transactions'] })
+
+			toast.success('Purchase successful!')
 
 			setError('')
 			setCoinAmount('')
@@ -130,15 +103,15 @@ export const useBuyCrypto = ({ wallet, currenciesData }: IUseBuyCrypto) => {
 	}
 
 	return {
-		handleSubmit,
-		coinAmount,
-		handleCoinAmountChange,
-		usdAmount,
-		handleUsdAmountChange,
-		coinPrice,
-		error,
 		currencyOptions,
 		selectedCoin,
-		setSelectedCoin
+		setSelectedCoin,
+		coinAmount,
+		usdAmount,
+		handleCoinAmountChange,
+		handleUsdAmountChange,
+		handleSubmit,
+		coinPrice,
+		error
 	}
 }

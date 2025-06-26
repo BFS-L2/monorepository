@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 
 import { queryClient } from '@/utils/queryClient'
 
@@ -22,6 +23,10 @@ export const useChangeEmail = () => {
 		mutationFn: userService.updateEmail,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['profile'] })
+
+			toast.success('Email successfully changed!')
+
+			setServerError('')
 			reset()
 		},
 		onError: error => {

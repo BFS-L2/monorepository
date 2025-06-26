@@ -5,41 +5,41 @@ import { Hr } from '@/components/ui/hr/Hr'
 import { Select } from '@/components/ui/select/Select'
 import { Title } from '@/components/ui/title/Title'
 
-import { useBuyCrypto } from '../hooks/useBuyCrypto'
+import { useSellCrypto } from '../../hooks/useSellCrypto'
 
 import type { ICurrency } from '@/shared/types/currencies.types'
 import type { IUserWalletDto } from '@/shared/types/user.types'
 
-interface IBuyCrypto {
+interface ISellCrypto {
 	wallet: IUserWalletDto | undefined
 	currenciesData: ICurrency[] | undefined
 }
 
-export const BuyCrypto = ({ wallet, currenciesData }: IBuyCrypto) => {
+export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
 	const {
-		handleSubmit,
-		coinAmount,
-		handleCoinAmountChange,
-		usdAmount,
-		handleUsdAmountChange,
-		coinPrice,
-		error,
-		currencyOptions,
+		walletBalanceOptions,
 		selectedCoin,
-		setSelectedCoin
-	} = useBuyCrypto({
+		setSelectedCoin,
+		coinAmount,
+		usdAmount,
+		handleCoinAmountChange,
+		handleUsdAmountChange,
+		handleSubmitSell,
+		coinPrice,
+		error
+	} = useSellCrypto({
 		wallet,
 		currenciesData
 	})
 
 	return (
 		<div className='flex w-full flex-col items-center rounded-xl bg-white p-6 text-teal-400 dark:bg-zinc-800'>
-			<form onSubmit={handleSubmit} className='flex w-full flex-col gap-2'>
+			<form onSubmit={handleSubmitSell} className='flex w-full flex-col gap-2'>
 				<Title
 					type='h2'
 					className='mb-2 text-xl text-teal-400 dark:text-teal-400'
 				>
-					Buy Crypto
+					Sell Crypto
 				</Title>
 
 				<Hr />
@@ -60,15 +60,15 @@ export const BuyCrypto = ({ wallet, currenciesData }: IBuyCrypto) => {
 					onChange={handleUsdAmountChange}
 				/>
 
-				<span className='ml-1 text-sm text-zinc-200'>
+				<span className='text-sm text-zinc-200'>
 					Coin price:{' '}
 					<span className='font-mono text-teal-300'>
-						{coinPrice && `${coinPrice} USD`}
+						{coinPrice !== null ? `${coinPrice} USD` : 'No data available'}
 					</span>
 				</span>
 
 				<Select
-					options={currencyOptions}
+					options={walletBalanceOptions}
 					value={selectedCoin}
 					onChange={setSelectedCoin}
 				/>
@@ -76,7 +76,7 @@ export const BuyCrypto = ({ wallet, currenciesData }: IBuyCrypto) => {
 				<ErrorMessage message={error} />
 
 				<Button type='submit' variant='primary' className='mt-1 md:w-52'>
-					Buy
+					Sell
 				</Button>
 			</form>
 		</div>

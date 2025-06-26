@@ -9,7 +9,8 @@ import { useTransactions } from '@/hooks/api/useTransactions'
 import { FormatDate } from '@/utils/formatDate.utils'
 import { cn } from '@/utils/tailwind.utils'
 
-import { useSortTransactions } from './useSortTransactions'
+import { useSortTransactions } from '../../hooks/useSortTransactions'
+
 import type { ICurrency } from '@/shared/types/currencies.types'
 
 export const TransactionsItems = ({
@@ -19,8 +20,10 @@ export const TransactionsItems = ({
 }) => {
 	const { transactions, isLoading } = useTransactions()
 
-	const quantity = 10
-	const { TransactionsSorted } = useSortTransactions({ transactions, quantity })
+	const { TransactionsSorted } = useSortTransactions({
+		transactions,
+		quantity: 10
+	})
 
 	return (
 		<>
@@ -42,9 +45,9 @@ export const TransactionsItems = ({
 					return (
 						<div
 							key={transaction?._id}
-							className='grid w-full grid-cols-1 items-center gap-3 rounded-lg bg-zinc-100 p-4 text-zinc-900 md:grid-cols-12 dark:bg-zinc-900 dark:text-white'
+							className='grid w-full grid-cols-2 items-center gap-3 rounded-lg bg-zinc-100 p-4 text-zinc-900 md:grid-cols-12 dark:bg-zinc-900 dark:text-white'
 						>
-							<div className='flex items-center gap-3 md:col-span-3'>
+							<div className='col-span-2 flex items-center gap-3 md:col-span-3'>
 								{imageUrl ? (
 									<img
 										src={imageUrl}
@@ -71,7 +74,7 @@ export const TransactionsItems = ({
 								</div>
 							</div>
 
-							<div className='flex items-center gap-2 md:col-span-2'>
+							<div className='col-span-1 flex items-center gap-2 md:col-span-2'>
 								<Wallet size={16} className='flex-shrink-0 opacity-70' />
 								<div className='flex flex-col'>
 									<span className='text-xs text-zinc-500 md:hidden dark:text-zinc-400'>
@@ -85,7 +88,7 @@ export const TransactionsItems = ({
 								</div>
 							</div>
 
-							<div className='flex items-center gap-2 md:col-span-2'>
+							<div className='col-span-1 flex items-center gap-2 md:col-span-2'>
 								<Coins size={16} className='flex-shrink-0 opacity-70' />
 								<div className='flex flex-col'>
 									<span className='text-xs text-zinc-500 md:hidden dark:text-zinc-400'>
@@ -99,19 +102,19 @@ export const TransactionsItems = ({
 								</div>
 							</div>
 
-							<div className='flex items-center gap-2 md:col-span-2'>
+							<div className='col-span-1 flex items-center gap-2 md:col-span-2'>
 								<TrendingUp size={16} className='flex-shrink-0 opacity-70' />
 								<div className='flex flex-col'>
 									<span className='text-xs text-zinc-500 md:hidden dark:text-zinc-400'>
 										Rate
 									</span>
 									<span className='font-mono text-sm'>
-										{transaction?.rate.toFixed(2)} USD
+										${transaction?.rate.toFixed(2)}
 									</span>
 								</div>
 							</div>
 
-							<div className='flex justify-end md:col-span-3'>
+							<div className='col-span-1 flex md:col-span-3 md:justify-end'>
 								<span
 									className={cn(
 										'flex items-center rounded-md px-3 py-1.5 text-sm font-medium',

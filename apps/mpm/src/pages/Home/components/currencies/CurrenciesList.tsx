@@ -3,8 +3,9 @@ import { Title } from '@/components/ui/title/Title'
 
 import { useCurrenciesData } from '@/hooks/api/useCurrencies'
 
+import { useActiveCoinId } from '../../hooks/useActiveCoinId'
+
 import { CurrencyCard } from './CurrencyCard'
-import { useActiveCoinId } from './useActiveCoinId'
 import type { ICurrency } from '@/shared/types/currencies.types'
 
 export const Currencies = () => {

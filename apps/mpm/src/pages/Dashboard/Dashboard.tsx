@@ -6,8 +6,8 @@ import { useCurrenciesData } from '@/hooks/api/useCurrencies'
 import { useWallet } from '@/hooks/api/useWallet'
 import { useAuth } from '@/hooks/auth/useAuth'
 
-import { BuyCrypto } from './components/BuyCrypto'
-import { SellCrypto } from './components/SellCrypto'
+import { BuyCrypto } from './components/exchangeCrypto/BuyCrypto'
+import { SellCrypto } from './components/exchangeCrypto/SellCrypto'
 import { TransactionsSection } from './components/transactions/TransactionsSection'
 import { WalletSection } from './components/wallet/WalletSection'
 

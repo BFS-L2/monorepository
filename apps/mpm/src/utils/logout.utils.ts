@@ -17,6 +17,7 @@ export const logoutWithService = async () => {
 export const logoutWithoutService = async () => {
 	queryClient.setQueryData(['profile'], null)
 	// queryClient.removeQueries({ queryKey: ['profile'] })
+
 	queryClient.removeQueries({ queryKey: ['wallet'] })
 	queryClient.removeQueries({ queryKey: ['transactions'] })
 }

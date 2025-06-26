@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { ROUTES } from '@/constants/enums.constants'
@@ -23,6 +24,8 @@ export const useRegister = () => {
 	const { mutate: registerMutation } = useMutation({
 		mutationFn: authService.register,
 		onSuccess: () => {
+			toast.success('Registration successful')
+
 			reset()
 			navigate(ROUTES.LOGIN)
 		},

@@ -1,11 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
-import { useBalanceOptions } from '@/utils/mapBalancesToOptions.utils'
-import { parsePrice } from '@/utils/parsePrice.utils'
 import { queryClient } from '@/utils/queryClient'
 
+import { useCoinConverter } from './useCoinConverter'
+import { useBalanceOptions } from '@/pages/Dashboard/hooks/useBalancesToOptions'
 import { walletService } from '@/services/wallet.service'
 import type { ICurrency } from '@/shared/types/currencies.types'
 import type { IUserWalletDto } from '@/shared/types/user.types'
@@ -23,23 +24,18 @@ export const useSellCrypto = ({ wallet, currenciesData }: IUseSellCrypto) => {
 		value: string
 	} | null>(null)
 
-	const [coinAmount, setCoinAmount] = useState<string>('')
-	const [usdAmount, setUsdAmount] = useState<string>('')
+	const {
+		coinAmount,
+		setCoinAmount,
+		usdAmount,
+		setUsdAmount,
+		coinPrice,
+		currentCoin,
+		handleCoinAmountChange,
+		handleUsdAmountChange
+	} = useCoinConverter({ currenciesData, selectedCoin, type: 'sell' })
 
 	const [error, setError] = useState('')
-
-	const isValidNumber = (val: string) => /^(\d+(\.\d{0,8})?)?$/.test(val)
-
-	const rawPrice = currenciesData?.find(
-		c => c.CoinInfo.Name === selectedCoin?.label
-	)?.DISPLAY.USD.PRICE
-
-	const parsedPrice = parsePrice(rawPrice)
-
-	const coinPrice =
-		selectedCoin && parsedPrice && !isNaN(parsedPrice) ? parsedPrice : null
-
-	const currentCoin = selectedCoin ? selectedCoin.label : null
 
 	useEffect(() => {
 		if (selectedCoin) {
@@ -53,39 +49,13 @@ export const useSellCrypto = ({ wallet, currenciesData }: IUseSellCrypto) => {
 		}
 	}, [selectedCoin])
 
-	const handleCoinAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value
-
-		if (isValidNumber(value)) {
-			setCoinAmount(value)
-		}
-		if (value && coinPrice !== null) {
-			const calculatedUSD = (parseFloat(value) * coinPrice).toFixed(2)
-			setUsdAmount(calculatedUSD)
-		} else {
-			setUsdAmount('')
-		}
-	}
-
-	const handleUsdAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value
-
-		if (isValidNumber(value)) {
-			setUsdAmount(value)
-		}
-		if (value && coinPrice !== null) {
-			const calculatedCoin = (parseFloat(value) / coinPrice).toFixed(8)
-			setCoinAmount(calculatedCoin)
-		} else {
-			setCoinAmount('')
-		}
-	}
-
 	const { mutate: sellCrypto } = useMutation({
 		mutationFn: walletService.sellCrypto,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['wallet'] })
 			queryClient.invalidateQueries({ queryKey: ['transactions'] })
+
+			toast.success('Sale successful!')
 
 			setError('')
 			setCoinAmount('')
@@ -122,7 +92,14 @@ export const useSellCrypto = ({ wallet, currenciesData }: IUseSellCrypto) => {
 			return option.label === selectedCoin?.label
 		})?.value
 
-		if (userCoins !== undefined && userCoins < coinAmount) {
+		const amountToSell = parseFloat(coinAmount)
+		const currentCoins = parseFloat(userCoins || '')
+
+		if (
+			!isNaN(amountToSell) &&
+			!isNaN(currentCoins) &&
+			currentCoins < amountToSell
+		) {
 			setError('Insufficient funds')
 			return
 		}
@@ -135,15 +112,15 @@ export const useSellCrypto = ({ wallet, currenciesData }: IUseSellCrypto) => {
 	}
 
 	return {
-		handleSubmitSell,
-		coinAmount,
-		handleCoinAmountChange,
-		usdAmount,
-		handleUsdAmountChange,
-		coinPrice,
 		walletBalanceOptions,
 		selectedCoin,
 		setSelectedCoin,
+		coinAmount,
+		usdAmount,
+		handleCoinAmountChange,
+		handleUsdAmountChange,
+		handleSubmitSell,
+		coinPrice,
 		error
 	}
 }
