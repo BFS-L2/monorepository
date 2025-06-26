@@ -60,9 +60,9 @@ export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
 					onChange={handleUsdAmountChange}
 				/>
 
-				<span className='text-sm text-zinc-200'>
+				<span className='text-sm text-zinc-800 dark:text-zinc-200'>
 					Coin price:{' '}
-					<span className='font-mono text-teal-300'>
+					<span className='font-mono text-teal-400'>
 						{coinPrice !== null ? `${coinPrice} USD` : 'No data available'}
 					</span>
 				</span>

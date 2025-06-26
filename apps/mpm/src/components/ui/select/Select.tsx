@@ -1,5 +1,9 @@
 import SelectBase from 'react-select'
 
+import { useThemeStore } from '@/store/themeStore'
+
+import { themeColors } from '@/utils/themeColors'
+
 type Option = { label: string; value: string }
 
 export interface ISelectProps {
@@ -20,6 +24,8 @@ export const Select = ({
 	onChange,
 	...props
 }: ISelectProps) => {
+	const theme = useThemeStore(state => state.theme)
+
 	return (
 		<SelectBase
 			{...props}
@@ -31,31 +37,36 @@ export const Select = ({
 			styles={{
 				control: (base, state) => ({
 					...base,
-					backgroundColor: 'rgb(24 24 27)',
-					color: '#fff',
-					borderColor: state.isFocused ? '#2dd4bf' : 'transparent',
+					backgroundColor: theme === 'dark' ? themeColors.zinc900 : '#fff',
+					color: theme === 'dark' ? '#fff' : themeColors.zinc900,
+					borderColor: state.isFocused ? themeColors.teal400 : 'transparent',
 					boxShadow: 'none',
 					transition: 'all 0.3s ease-in-out',
 					borderRadius: 4,
+					border: theme !== 'dark' ? `1px solid ${themeColors.zinc300} ` : '',
 					fontSize: 14,
 					'&:hover': {
-						borderColor: '#2dd4bf'
+						borderColor: themeColors.teal400
 					},
 					cursor: 'pointer'
 				}),
 				singleValue: base => ({
 					...base,
-					color: '#fff'
+					color: theme === 'dark' ? '#fff' : ''
 				}),
 				menu: base => ({
 					...base,
-					backgroundColor: 'rgb(24 24 27)',
-					color: '#fff'
+					backgroundColor: theme === 'dark' ? themeColors.zinc900 : '#fff',
+					color: theme === 'dark' ? '#fff' : themeColors.zinc900
 				}),
 				option: (base, state) => ({
 					...base,
-					backgroundColor: state.isFocused ? '#2dd4bf' : 'transparent',
-					color: state.isFocused ? '#000' : '#fff',
+					backgroundColor: state.isFocused
+						? themeColors.teal400
+						: (theme === 'dark' && themeColors.zinc900) || '#fff',
+					color: state.isFocused
+						? (theme === 'dark' && themeColors.zinc900) || '#fff'
+						: (theme === 'dark' && '#fff') || themeColors.zinc900,
 					cursor: 'pointer'
 				})
 			}}

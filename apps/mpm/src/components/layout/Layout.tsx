@@ -2,10 +2,16 @@ import { AnimatePresence } from 'framer-motion'
 import { Toaster } from 'react-hot-toast'
 import { Outlet } from 'react-router-dom'
 
+import { useThemeStore } from '@/store/themeStore'
+
+import { themeColors } from '@/utils/themeColors'
+
 import { Footer } from './footer/Footer'
 import { Header } from './header/Header'
 
 export const Layout = () => {
+	const theme = useThemeStore(state => state.theme)
+
 	return (
 		<div className='flex min-h-screen flex-col bg-zinc-100 dark:bg-zinc-900'>
 			<Toaster
@@ -13,14 +19,18 @@ export const Layout = () => {
 				toastOptions={{
 					duration: 5000,
 					style: {
-						background: '#27272a', // zinc-800 (#18181b — zinc-900)
-						color: '#fff',
-						border: '1px solid #454545'
+						background: theme === 'dark' ? themeColors.zinc800 : '#fff',
+						color: theme === 'dark' ? '#fff' : themeColors.zinc900,
+						boxShadow: 'none',
+						border:
+							theme === 'dark'
+								? `1px solid ${themeColors.zinc600}`
+								: `1px solid ${themeColors.zinc300}`
 					},
 					success: {
 						iconTheme: {
-							primary: '#2dd4bf', // teal-400
-							secondary: '#ffffff'
+							primary: themeColors.teal400,
+							secondary: '#fff'
 						}
 					}
 				}}
