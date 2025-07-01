@@ -1,15 +1,14 @@
-import { PageWrapper } from '@/components/PageWrapper'
 import { Loader } from '@/components/ui/loader/Loader'
+import { PageWrapper } from '@/components/ui/pageWrapper/PageWrapper'
 import { Title } from '@/components/ui/title/Title'
 
 import { useCurrenciesData } from '@/hooks/api/useCurrencies'
 import { useWallet } from '@/hooks/api/useWallet'
 import { useAuth } from '@/hooks/auth/useAuth'
 
-import { BuyCrypto } from './components/exchangeCrypto/BuyCrypto'
-import { SellCrypto } from './components/exchangeCrypto/SellCrypto'
-import { TransactionsSection } from './components/transactions/TransactionsSection'
-import { WalletSection } from './components/wallet/WalletSection'
+import { BuyCrypto, SellCrypto } from '@/features/crypto'
+import { TransactionsSection } from '@/features/transactions'
+import { WalletSection } from '@/features/wallet'
 
 export const Dashboard = () => {
 	const { isAuthenticated } = useAuth()

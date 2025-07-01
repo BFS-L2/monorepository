@@ -1,5 +1,10 @@
 export const FormatDate = (dateString: string) => {
 	const date = new Date(dateString)
-	if (isNaN(date.getTime())) return 'Invalid date'
-	return date.toLocaleString()
+	const time = date.getTime()
+
+	if (!isNaN(time)) {
+		return date.toLocaleString()
+	} else {
+		return 'Invalid date'
+	}
 }

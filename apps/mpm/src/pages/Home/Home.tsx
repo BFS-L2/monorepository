@@ -1,9 +1,6 @@
-import { PageWrapper } from '@/components/PageWrapper'
+import { PageWrapper } from '@/components/ui/pageWrapper/PageWrapper'
 
-import { HeroSection } from './components/HeroSection'
-import { Currencies } from './components/currencies/CurrenciesList'
-import { LineChartsList } from './components/line-chart/LineChartsList'
-import { NewsSection } from './components/news/NewsSection'
+import { Currencies, HeroSection, LineChartsList, NewsSection } from '@/features/home'
 
 export const Home = () => {
 	return (

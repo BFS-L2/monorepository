@@ -1,9 +1,9 @@
 import { queryClient } from '@/utils/queryClient'
 
-import { authService } from '@/services/auth.service'
+import { loginService } from '@/features/login'
 
 export const logoutWithService = async () => {
-	await authService.logout()
+	await loginService.logout()
 	queryClient.setQueryData(['profile'], null)
 	queryClient.removeQueries({ queryKey: ['profile'] })
 

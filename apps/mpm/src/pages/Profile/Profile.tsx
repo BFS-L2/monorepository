@@ -1,14 +1,16 @@
-import { PageWrapper } from '@/components/PageWrapper'
 import { Loader } from '@/components/ui/loader/Loader'
+import { PageWrapper } from '@/components/ui/pageWrapper/PageWrapper'
 import { Title } from '@/components/ui/title/Title'
 
 import { useAuth } from '@/hooks/auth/useAuth'
 
-import { ChangeEmailForm } from './components/ChangeEmailForm'
-import { ChangeInfoForm } from './components/ChangeInfoForm'
-import { ChangePasswordForm } from './components/ChangePasswordForm'
-import { Logout } from './components/Logout'
-import { ProfileInformation } from './components/ProfileInformation'
+import {
+	ChangeEmailForm,
+	ChangeInfoForm,
+	ChangePasswordForm,
+	Logout,
+	ProfileInformation
+} from '@/features/profile'
 
 export const Profile = () => {
 	const { user, isAuthenticated, isLoading } = useAuth()
@@ -35,7 +37,7 @@ export const Profile = () => {
 						<Title type='h1' className='mb-3'>
 							Profile
 						</Title>
-						<ProfileInformation user={user} />
+						<ProfileInformation isLoading={isLoading} user={user} />
 						<div className='mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
 							<ChangeInfoForm />
 							<ChangeEmailForm />

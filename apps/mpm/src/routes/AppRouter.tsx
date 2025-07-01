@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion'
 import { Suspense, lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
@@ -21,7 +22,9 @@ const Profile = lazy(() =>
 	}))
 )
 const Login = lazy(() =>
-	import('@/pages/Login/Login').then(module => ({ default: module.Login }))
+	import('@/pages//Login/Login').then(module => ({
+		default: module.Login
+	}))
 )
 const Register = lazy(() =>
 	import('@/pages/Register/Register').then(module => ({
@@ -33,38 +36,28 @@ export const AppRouter = () => {
 	const { isAuthenticated } = useAuth()
 
 	return (
-		<Suspense>
-			<Routes>
-				<Route path={ROUTES.HOME} element={<Layout />}>
-					<Route index element={<Home />} />
+		<AnimatePresence mode='wait'>
+			<Suspense>
+				<Routes>
+					<Route path={ROUTES.HOME} element={<Layout />}>
+						<Route index element={<Home />} />
 
-					<Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
-					<Route path={ROUTES.PROFILE} element={<Profile />} />
+						<Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+						<Route path={ROUTES.PROFILE} element={<Profile />} />
 
-					<Route
-						path={ROUTES.REGISTER}
-						element={
-							isAuthenticated ? (
-								<Navigate to={ROUTES.HOME} replace />
-							) : (
-								<Register />
-							)
-						}
-					/>
-					<Route
-						path={ROUTES.LOGIN}
-						element={
-							isAuthenticated ? (
-								<Navigate to={ROUTES.HOME} replace />
-							) : (
-								<Login />
-							)
-						}
-					/>
-				</Route>
+						<Route
+							path={ROUTES.REGISTER}
+							element={isAuthenticated ? <Navigate to={ROUTES.HOME} replace /> : <Register />}
+						/>
+						<Route
+							path={ROUTES.LOGIN}
+							element={isAuthenticated ? <Navigate to={ROUTES.HOME} replace /> : <Login />}
+						/>
+					</Route>
 
-				<Route path='*' element={<Navigate to='/' replace />} />
-			</Routes>
-		</Suspense>
+					<Route path='*' element={<Navigate to='/' replace />} />
+				</Routes>
+			</Suspense>
+		</AnimatePresence>
 	)
 }

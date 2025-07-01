@@ -27,7 +27,7 @@ export const useToggleModal = () => {
 		return () => {
 			document.removeEventListener('keydown', handleEscape)
 		}
-	}, [isShowMenu])
+	}, [])
 
 	return { handleShowMenu, isShowMenu, setIsShowMenu }
 }

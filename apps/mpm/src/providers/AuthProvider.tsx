@@ -5,7 +5,7 @@ import { AuthContext } from '@/providers/contexts/AuthContext'
 
 import { queryClient } from '@/utils/queryClient'
 
-import { userService } from '@/services/user.service'
+import { userService } from '@/features/profile'
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const {

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import currencyService from '@/services/currency.service'
+import currencyService from '@/features/home/services/currency.service'
 
 export const useCurrenciesData = () => {
 	const {

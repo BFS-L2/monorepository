@@ -15,7 +15,9 @@ import { MenuItem } from './MenuItem'
 
 export const Menu = () => {
 	const { isAuthenticated, isLoading } = useAuth()
-	const { theme, toggleTheme } = useThemeStore()
+
+	const theme = useThemeStore(state => state.theme)
+	const toggleTheme = useThemeStore(state => state.toggleTheme)
 
 	return (
 		<nav className='hidden flex-1 items-center justify-end gap-2 md:flex'>

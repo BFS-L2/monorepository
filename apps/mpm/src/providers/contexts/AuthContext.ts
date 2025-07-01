@@ -1,9 +1,9 @@
 import { createContext } from 'react'
 
-import type { IUserDto } from '@/shared/types/user.types'
+import type { UserResponse } from '@/features/profile'
 
 export type AuthContextType = {
-	user: IUserDto | null
+	user: UserResponse | null
 	isAuthenticated: boolean
 	isLoading: boolean
 	refetch: () => void

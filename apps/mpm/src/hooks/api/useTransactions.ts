@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useAuth } from '../auth/useAuth'
 
-import { walletService } from '@/services/wallet.service'
+import { transactionsService } from '@/features/transactions'
 
-export const useTransactions = () => {
+export const useTransactions = (limit: number) => {
 	const { isAuthenticated } = useAuth()
 
 	const {
@@ -14,7 +14,7 @@ export const useTransactions = () => {
 		isSuccess
 	} = useQuery({
 		queryKey: ['transactions'],
-		queryFn: () => walletService.getTransactions(),
+		queryFn: () => transactionsService.getTransactions(limit),
 		staleTime: 30 * 60 * 1000,
 		enabled: isAuthenticated
 	})

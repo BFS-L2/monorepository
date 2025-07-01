@@ -1,4 +1,4 @@
-export interface ICoinInfo {
+export interface CurrencyCoinItem {
 	Id: string
 	Name: string
 	FullName: string
@@ -22,7 +22,7 @@ export interface ICoinInfo {
 	}
 }
 
-export interface IUsd {
+export interface CurrencyUsdItem {
 	CHANGE24HOUR: string
 	CHANGEDAY: string
 	CHANGEHOUR: string
@@ -70,53 +70,41 @@ export interface IUsd {
 	VOLUMEHOURTO: string
 }
 
-export interface IUsdData {
-	USD: IUsd
+export interface CurrencyUsdData {
+	USD: CurrencyUsdItem
 }
 
-export interface ICurrency {
-	CoinInfo: ICoinInfo
-	DISPLAY: IUsdData
+export interface CurrencyData {
+	CoinInfo: CurrencyCoinItem
+	DISPLAY: CurrencyUsdData
 }
 
-export interface ICurrencyDto {
-	Data: ICurrency[]
+export interface CurrencyResponse {
+	Data: CurrencyData[]
 }
 
-export interface ISellCryptoDto {
-	symbol: string
-	amount: string
-	price: number
-}
-
-export interface IBuyCryptoDto {
-	symbol: string
-	amount: string
-	price: number
-}
-
-export interface IChartDataDto {
+export interface ChartItem {
 	time: number
 	close: string
 	price: number
 }
 
-export interface IChart {
+export interface ChartResponse {
 	Aggregated: boolean
-	Data: IChartDataDto[]
+	Data: ChartItem[]
 	TimeFrom: number
 	TimeTo: number
 }
 
-export interface INewsItem {
+export interface NewsItem {
 	imageurl: string
 	title: string
 	body: string
 	url: string
 }
 
-export interface INewsApiResponse {
-	Data: INewsItem[]
+export interface NewsResponse {
+	Data: NewsItem[]
 	HasWarning: boolean
 	Message: string
 	Promoted: unknown[]

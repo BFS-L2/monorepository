@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useAuth } from '../auth/useAuth'
 
-import { walletService } from '@/services/wallet.service'
+import { walletService } from '@/features/wallet/services/wallet.service'
 
 export const useWallet = () => {
 	const { isAuthenticated } = useAuth()

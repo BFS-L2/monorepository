@@ -7,7 +7,6 @@ import { themeColors } from '@/utils/themeColors'
 type Option = { label: string; value: string }
 
 export interface ISelectProps {
-	variant?: 'base'
 	className?: string
 	options: Option[] | undefined
 	placeholder?: string
@@ -16,7 +15,6 @@ export interface ISelectProps {
 }
 
 export const Select = ({
-	variant = 'base',
 	className,
 	options,
 	placeholder = 'Selected...',

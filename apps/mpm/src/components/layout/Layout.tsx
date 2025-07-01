@@ -1,4 +1,3 @@
-import { AnimatePresence } from 'framer-motion'
 import { Toaster } from 'react-hot-toast'
 import { Outlet } from 'react-router-dom'
 
@@ -38,9 +37,7 @@ export const Layout = () => {
 			/>
 			<Header />
 			<main className='mt-11 flex-1 scroll-smooth md:mt-12'>
-				<AnimatePresence mode='wait'>
-					<Outlet key={location.pathname} />
-				</AnimatePresence>
+				<Outlet key={location.pathname} />
 			</main>
 			<Footer />
 		</div>
