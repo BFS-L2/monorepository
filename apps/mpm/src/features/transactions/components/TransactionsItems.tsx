@@ -17,12 +17,13 @@ export const TransactionsItems = ({
 
 	const { TransactionsSorted } = useSortTransactions({ transactions })
 
+	const isMainTransactionsLoading = isTransactionsLoading || isCriticalLoading
+
 	return (
 		<>
-			{isCriticalLoading && isTransactionsLoading && <TransactionSkeletonList />}
+			{isMainTransactionsLoading && <TransactionSkeletonList />}
 
-			{!isCriticalLoading &&
-				!isTransactionsLoading &&
+			{!isMainTransactionsLoading &&
 				TransactionsSorted.map(transaction => (
 					<TransactionsItem
 						key={transaction?.id}

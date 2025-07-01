@@ -11,9 +11,7 @@ import { WalletSection } from '@/features/wallet'
 
 export const Dashboard = () => {
 	const { isAuthenticated, isLoading: isAuthLoading } = useAuth()
-
 	const { wallet, isLoading: isWalletLoading } = useWallet()
-
 	const { currenciesData } = useCurrenciesData()
 
 	const isCriticalLoading = isAuthLoading || isWalletLoading

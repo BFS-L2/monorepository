@@ -4,7 +4,7 @@ export const WalletItemSkeletonList = () => {
 			{Array.from({ length: 8 }).map((_, i) => (
 				<div
 					key={i}
-					className='flex animate-pulse items-center justify-between rounded-lg bg-zinc-100 p-3 dark:bg-zinc-900'
+					className='mt-2 grid animate-pulse grid-cols-1 gap-1 bg-zinc-100 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 dark:bg-zinc-900'
 				>
 					<div className='flex items-center gap-2'>
 						<div className='h-10 w-10 rounded-full bg-zinc-300 dark:bg-zinc-700' />
