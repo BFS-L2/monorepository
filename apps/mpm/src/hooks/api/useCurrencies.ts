@@ -11,7 +11,9 @@ export const useCurrenciesData = () => {
 	} = useQuery({
 		queryKey: ['currencies'],
 		queryFn: () => currencyService.getCurrencies(),
-		staleTime: 10 * 60 * 1000
+		staleTime: 10 * 60 * 1000,
+		refetchInterval: 60 * 1000,
+		refetchIntervalInBackground: true
 	})
 
 	const currenciesData = currencies?.Data

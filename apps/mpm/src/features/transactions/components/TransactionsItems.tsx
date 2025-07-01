@@ -7,19 +7,22 @@ import { TransactionsItem } from './TransactionsItem'
 import type { CurrencyData } from '@/shared/types/currencies.types'
 
 export const TransactionsItems = ({
-	currenciesData
+	currenciesData,
+	isCriticalLoading
 }: {
 	currenciesData: CurrencyData[] | undefined
+	isCriticalLoading: boolean
 }) => {
-	const { transactions, isLoading } = useTransactions(12)
+	const { transactions, isLoading: isTransactionsLoading } = useTransactions(12)
 
 	const { TransactionsSorted } = useSortTransactions({ transactions })
 
 	return (
 		<>
-			{isLoading && <TransactionSkeletonList />}
+			{isCriticalLoading && isTransactionsLoading && <TransactionSkeletonList />}
 
-			{!isLoading &&
+			{!isCriticalLoading &&
+				!isTransactionsLoading &&
 				TransactionsSorted.map(transaction => (
 					<TransactionsItem
 						key={transaction?.id}

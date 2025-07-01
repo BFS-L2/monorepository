@@ -1,21 +1,48 @@
+import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
+
 import { parsePrice } from '@/utils/parsePrice.utils'
+import { cn } from '@/utils/tailwind.utils'
+
+import { usePriceDirection } from '../../hooks/usePriceDirection'
 
 import type { CurrencyData } from '@/shared/types/currencies.types'
 
 export const CurrencyDetails = ({ coin }: { coin: CurrencyData }) => {
+	const price = parsePrice(coin.DISPLAY?.USD?.PRICE)
+	const marketCapitalization = coin.DISPLAY?.USD?.MKTCAP
+	const rating = coin?.CoinInfo?.Rating?.Weiss?.Rating || 'N/A'
+
+	const changeDirection = usePriceDirection(price)
+
 	return (
 		<div className='flex w-full flex-col gap-1'>
 			<div className='flex justify-between text-sm'>
 				<span className='text-zinc-500 dark:text-zinc-400'>Price</span>
-				<span className='font-semibold'>{parsePrice(coin.DISPLAY?.USD?.PRICE)} $</span>
+				<div className='relative flex items-center'>
+					<ArrowBigUp
+						className={cn(
+							'absolute text-green-500 opacity-0 transition-opacity duration-300',
+							changeDirection === 'up' && 'opacity-100'
+						)}
+						size={18}
+					/>
+					<ArrowBigDown
+						className={cn(
+							'text-red-500 opacity-0 transition-opacity duration-300',
+							changeDirection === 'down' && 'opacity-100'
+						)}
+						size={18}
+					/>
+					<span className='font-semibold'>{price} $</span>
+				</div>
 			</div>
 			<div className='flex justify-between text-sm'>
 				<span className='text-zinc-500 dark:text-zinc-400'>Market Cap</span>
-				<span className='font-semibold'>{coin.DISPLAY?.USD?.MKTCAP}</span>
+				<span className='font-semibold'>{marketCapitalization}</span>
 			</div>
 			<div className='flex justify-between text-sm'>
 				<span className='text-zinc-500 dark:text-zinc-400'>Weiss Rating</span>
-				<span className='font-semibold'>{coin?.CoinInfo?.Rating?.Weiss?.Rating || 'N/A'}</span>
+				<span className='font-semibold'>{rating}</span>
 			</div>
 		</div>
 	)

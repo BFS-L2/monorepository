@@ -14,6 +14,7 @@ export * from './components/news/NewsSection.tsx'
 
 export * from './hooks/useActiveCoinId'
 export * from './hooks/useLineChart'
+export * from './hooks/usePriceDirection'
 
 export * from './services/currency.service'
 export * from './types'

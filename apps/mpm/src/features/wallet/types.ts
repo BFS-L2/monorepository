@@ -10,4 +10,6 @@ export interface WalletResponse {
 export interface IWalletSection {
 	currenciesData: CurrencyData[] | undefined
 	wallet: WalletResponse | undefined
+	isCriticalLoading?: boolean
+	isWalletMissing?: boolean
 }
