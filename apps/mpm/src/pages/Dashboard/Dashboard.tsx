@@ -18,27 +18,31 @@ export const Dashboard = () => {
 	const isWalletMissing = !isAuthenticated && !wallet
 
 	return (
-		<PageWrapper>
-			<section className='container mx-auto p-4'>
-				<Title type='h1' className='mb-3'>
-					Dashboard
-				</Title>
+		<>
+			<PageWrapper>
+				<section className='container mx-auto p-4'>
+					<Title type='h1' className='mb-3'>
+						Dashboard
+					</Title>
 
-				<WalletSection
-					isCriticalLoading={isCriticalLoading}
-					isWalletMissing={isWalletMissing}
-					currenciesData={currenciesData}
-					wallet={wallet}
-				/>
-				<div className='mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2'>
-					<BuyCrypto wallet={wallet} currenciesData={currenciesData} />
-					<SellCrypto wallet={wallet} currenciesData={currenciesData} />
-				</div>
-				<TransactionsSection
-					currenciesData={currenciesData}
-					isCriticalLoading={isCriticalLoading}
-				/>
-			</section>
-		</PageWrapper>
+					<WalletSection
+						isCriticalLoading={isCriticalLoading}
+						isWalletMissing={isWalletMissing}
+						currenciesData={currenciesData}
+						wallet={wallet}
+					/>
+					{!isWalletMissing && (
+						<div className='mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2'>
+							<BuyCrypto wallet={wallet} currenciesData={currenciesData} />
+							<SellCrypto wallet={wallet} currenciesData={currenciesData} />
+						</div>
+					)}
+					<TransactionsSection
+						currenciesData={currenciesData}
+						isCriticalLoading={isCriticalLoading}
+					/>
+				</section>
+			</PageWrapper>
+		</>
 	)
 }

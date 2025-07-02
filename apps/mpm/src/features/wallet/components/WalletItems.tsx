@@ -3,7 +3,7 @@ import { parsePrice } from '@/utils/parsePrice.utils'
 import type { IWalletSection } from '../types'
 
 import { WalletItem } from './WalletItem'
-import { WalletItemSkeletonList } from './WalletItemSkeletonList'
+import { WalletItemSkeletonList } from './WalletSkeletonList'
 
 export const WalletItems = ({
 	currenciesData,

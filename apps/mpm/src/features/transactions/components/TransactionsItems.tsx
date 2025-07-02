@@ -23,6 +23,8 @@ export const TransactionsItems = ({
 		<>
 			{isMainTransactionsLoading && <TransactionSkeletonList />}
 
+			{!transactions && !isMainTransactionsLoading && <div>Transactions not found</div>}
+
 			{!isMainTransactionsLoading &&
 				TransactionsSorted.map(transaction => (
 					<TransactionsItem
