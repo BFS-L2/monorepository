@@ -57,8 +57,8 @@ export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => 
 	} else if (currentAnswer && question.includes('_')) {
 		changeQuestions = (
 			<div className='flex flex-col gap-3'>
-				<p className='font-semibold text-white'>{currentAnswer.question}</p>
-				<p className='text-zinc-300'>{currentAnswer.answer}</p>
+				<p className='font-semibold text-zinc-900 dark:text-white'>{currentAnswer.question}</p>
+				<p className='text-zinc-600 dark:text-zinc-300'>{currentAnswer.answer}</p>
 			</div>
 		)
 	} else {
@@ -72,15 +72,23 @@ export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => 
 	}
 
 	return (
-		<div className='pointer-events-auto w-full max-w-md rounded border-1 border-zinc-700 bg-zinc-800 p-6 shadow-lg'>
+		<div className='pointer-events-auto w-full max-w-md rounded bg-zinc-200 p-6 shadow-sm dark:border-1 dark:border-zinc-700 dark:bg-zinc-800 dark:shadow-none'>
 			<div className='mb-6 flex justify-between'>
 				<Title type='h2'>FAQ</Title>
 				{question === '' ? (
-					<Button variant='ghost' onClick={handleShowMenu} className='w-25'>
+					<Button
+						variant='ghost'
+						onClick={handleShowMenu}
+						className='w-25 text-zinc-900 dark:text-white'
+					>
 						Close
 					</Button>
 				) : (
-					<Button variant='ghost' onClick={handleBack} className='w-25'>
+					<Button
+						variant='ghost'
+						onClick={handleBack}
+						className='w-25 text-zinc-900 dark:text-white'
+					>
 						← Back
 					</Button>
 				)}

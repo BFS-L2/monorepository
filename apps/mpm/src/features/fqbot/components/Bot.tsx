@@ -35,7 +35,7 @@ export const Bot = () => {
 				<BotIcon
 					onClick={handleShowMenu}
 					size={50}
-					className='fixed right-5 bottom-5 z-50 cursor-pointer rounded-full bg-teal-400 p-2 text-white transition-colors duration-300 hover:bg-teal-500'
+					className='fixed right-5 bottom-5 z-50 cursor-pointer rounded-full bg-teal-400 p-2 text-zinc-900 transition-colors duration-300 hover:bg-teal-500 dark:text-white'
 				/>
 			)}
 		</AnimatePresence>

@@ -26,7 +26,7 @@ export const Button = ({
 				variant === 'logout' &&
 					'w-full cursor-pointer rounded bg-pink-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-300 hover:bg-pink-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-pink-700 dark:hover:bg-pink-800',
 				variant === 'ghost' &&
-					'cursor-pointer rounded-sm border-1 border-zinc-400 px-2 py-1 text-sm text-white transition-colors duration-300 hover:bg-zinc-700',
+					'cursor-pointer rounded-sm border-1 border-zinc-400 px-2 py-1 text-sm font-medium text-white transition-colors duration-300 hover:bg-zinc-300 dark:hover:bg-zinc-700',
 				className
 			)}
 		>
