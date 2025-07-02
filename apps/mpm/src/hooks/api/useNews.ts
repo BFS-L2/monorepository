@@ -11,7 +11,9 @@ export const useNewsData = () => {
 	} = useQuery({
 		queryKey: ['news'],
 		queryFn: () => currencyService.getNews(),
-		staleTime: 60 * 60 * 1000
+		staleTime: 30 * 60 * 1000,
+		refetchInterval: 10 * 60 * 1000,
+		refetchIntervalInBackground: true
 	})
 
 	const newsData = news?.Data

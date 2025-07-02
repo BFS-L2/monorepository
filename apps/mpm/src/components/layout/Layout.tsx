@@ -7,6 +7,7 @@ import { themeColors } from '@/utils/themeColors'
 
 import { Footer } from './footer/Footer'
 import { Header } from './header/Header'
+import { Bot } from '@/features/fqbot/components/Bot'
 
 export const Layout = () => {
 	const theme = useThemeStore(state => state.theme)
@@ -36,6 +37,7 @@ export const Layout = () => {
 				reverseOrder={false}
 			/>
 			<Header />
+			<Bot />
 			<main className='mt-11 flex-1 scroll-smooth md:mt-12'>
 				<Outlet key={location.pathname} />
 			</main>
