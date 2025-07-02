@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { BASE_URL } from '@/constants/api.constants'
 
-import { logoutWithoutService } from '@/utils/logout.utils'
+import { queryClient } from '@/utils/queryClient'
 
 export const $axios = axios.create({
 	baseURL: BASE_URL,
@@ -14,9 +14,9 @@ export const $axios = axios.create({
 
 $axios.interceptors.response.use(
 	res => res,
-	async error => {
+	error => {
 		if (error.response?.status === 401) {
-			logoutWithoutService()
+			queryClient.setQueryData(['profile'], null)
 		}
 		return Promise.reject(error)
 	}
