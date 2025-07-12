@@ -13,7 +13,7 @@ export const ChangePasswordForm = () => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className='flex flex-col justify-between gap-1 rounded-xl bg-white p-4 dark:bg-zinc-800'
+			className='flex flex-col justify-between gap-1 rounded-lg bg-white p-4 dark:bg-zinc-800'
 		>
 			<div className='flex flex-col gap-2'>
 				<Title type='h2' className='mb-1 text-lg font-semibold text-teal-400 dark:text-teal-400'>

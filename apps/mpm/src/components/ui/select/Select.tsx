@@ -4,7 +4,7 @@ import { useThemeStore } from '@/store/themeStore'
 
 import { themeColors } from '@/utils/themeColors'
 
-type Option = { label: string; value: string }
+export type Option = { label: string; value: string }
 
 export interface ISelectProps {
 	className?: string

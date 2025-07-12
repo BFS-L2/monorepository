@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, Clock, X } from 'lucide-react'
+import { ArrowBigDown, ArrowBigUp, Clock, X } from 'lucide-react'
 
 import { parsePrice } from '@/utils/parsePrice.utils'
 import { cn } from '@/utils/tailwind.utils'
@@ -20,7 +20,7 @@ export const CoinCard = ({ coin, onInfoClick, activeCoinId }: ICoinCard) => {
 	return (
 		<div
 			className={cn(
-				'absolute top-0 right-0 bottom-0 left-0 h-full w-full flex-col justify-between rounded-xl bg-zinc-200 p-4 dark:bg-zinc-800',
+				'absolute top-0 right-0 bottom-0 left-0 h-full w-full flex-col justify-between rounded-lg bg-zinc-50 p-4 dark:bg-zinc-800',
 				activeCoinId === coin?.CoinInfo?.Id ? 'flex' : 'hidden'
 			)}
 		>
@@ -30,8 +30,8 @@ export const CoinCard = ({ coin, onInfoClick, activeCoinId }: ICoinCard) => {
 				</span>
 				<X
 					onClick={() => onInfoClick(coin?.CoinInfo?.Id)}
-					size={16}
-					className={'cursor-pointer text-teal-400 transition hover:text-teal-300'}
+					size={26}
+					className='cursor-pointer rounded-sm bg-zinc-100 p-1 text-teal-400 transition-colors duration-300 hover:bg-zinc-200/50 hover:text-teal-300 dark:bg-zinc-700 dark:hover:bg-zinc-600'
 				/>
 			</div>
 			<div className='flex flex-col gap-1'>
@@ -45,7 +45,7 @@ export const CoinCard = ({ coin, onInfoClick, activeCoinId }: ICoinCard) => {
 				<div className='flex justify-between text-sm'>
 					<div className='flex items-center gap-1 text-zinc-500 dark:text-zinc-400'>
 						<span>24h High</span>
-						<ArrowUp className='h-3 w-3 text-green-500' />
+						<ArrowBigUp size={16} className='text-green-500' />
 					</div>
 					<span className='font-semibold'>{!isNaN(high) ? `${high} $` : 'N/A'}</span>
 				</div>
@@ -53,7 +53,7 @@ export const CoinCard = ({ coin, onInfoClick, activeCoinId }: ICoinCard) => {
 				<div className='flex justify-between text-sm'>
 					<div className='flex items-center gap-1 text-zinc-500 dark:text-zinc-400'>
 						<span>24h Low</span>
-						<ArrowDown className='h-3 w-3 text-red-500' />
+						<ArrowBigDown size={16} className='text-red-500' />
 					</div>
 					<span className='font-semibold'>{!isNaN(low) ? `${low} $` : 'N/A'}</span>
 				</div>
@@ -61,7 +61,7 @@ export const CoinCard = ({ coin, onInfoClick, activeCoinId }: ICoinCard) => {
 				<div className='flex justify-between text-sm'>
 					<div className='flex items-center gap-1 text-zinc-500 dark:text-zinc-400'>
 						<span>Opening Price</span>
-						<Clock className='h-3 w-3 text-yellow-500' />
+						<Clock size={12} className='text-yellow-500' />
 					</div>
 					<span className='font-semibold'>{!isNaN(openPrice) ? `${openPrice} $` : 'N/A'}</span>
 				</div>

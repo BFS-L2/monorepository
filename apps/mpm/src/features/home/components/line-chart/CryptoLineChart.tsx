@@ -8,7 +8,6 @@ import { useLineChart } from '../../hooks/useLineChart'
 
 export const CryptoLineChart = ({ coin }: { coin: string }) => {
 	const { historyData, isLoading } = useHistoryData(coin)
-
 	const { data, options } = useLineChart({ historyData, coin })
 
 	return (
@@ -19,9 +18,11 @@ export const CryptoLineChart = ({ coin }: { coin: string }) => {
 				</div>
 			)}
 			{!isLoading && historyData && (
-				<div className='rounded-2xl bg-zinc-800 px-4 py-6'>
-					<h3 className='mb-4 text-lg font-semibold text-white'>{coin} — 24 hour schedule</h3>
-					<div style={{ width: '100%', height: '300px' }}>
+				<div className='rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-6 dark:border-zinc-700 dark:bg-zinc-800'>
+					<h3 className='mb-4 text-base font-semibold text-zinc-900 md:text-lg dark:text-white'>
+						{coin} — 24 hour schedule
+					</h3>
+					<div className='h-[200px] w-full overflow-hidden md:h-[300px]'>
 						<Line data={data} options={options} />
 					</div>
 				</div>

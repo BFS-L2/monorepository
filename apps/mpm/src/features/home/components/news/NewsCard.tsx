@@ -2,7 +2,7 @@ import type { NewsItem } from '@/shared/types/currencies.types'
 
 export const NewsCard = (item: NewsItem) => {
 	return (
-		<article className='flex h-full flex-col overflow-hidden rounded-xl bg-zinc-200 dark:bg-zinc-800'>
+		<article className='flex h-full flex-col overflow-hidden rounded-lg border-1 border-zinc-200 bg-zinc-50 dark:border-none dark:bg-zinc-800'>
 			<img
 				src={item.imageurl}
 				alt={item.title || 'News image'}
@@ -18,7 +18,7 @@ export const NewsCard = (item: NewsItem) => {
 						href={item.url}
 						target='_blank'
 						rel='noopener noreferrer'
-						className='inline-block text-sm font-medium text-teal-400 hover:text-teal-300 hover:underline'
+						className='inline-block text-sm font-medium text-teal-400 transition-all duration-300 hover:text-teal-300 hover:underline'
 					>
 						Read more →
 					</a>

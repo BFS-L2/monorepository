@@ -56,22 +56,22 @@ export const useLineChart = ({
 		scales: {
 			x: {
 				ticks: {
-					color: '#d1d5db',
-					font: { size: 12 }
+					color: '#9ca3af',
+					font: { size: 11 }
 				},
 				grid: {
-					color: '#4f4f4f',
+					color: '#3f3f46',
 					drawTicks: false
 				}
 			},
 			y: {
 				ticks: {
-					color: '#d1d5db',
-					font: { size: 12 },
-					count: 6
+					color: '#9ca3af',
+					font: { size: 11 },
+					count: 5
 				},
 				grid: {
-					color: '#4f4f4f',
+					color: '#3f3f46',
 					borderDash: [1, 1],
 					drawTicks: false
 				}
@@ -92,7 +92,7 @@ export const useLineChart = ({
 			}
 		},
 		animation: {
-			duration: 600
+			duration: 500
 		}
 	}
 	return { data, options }

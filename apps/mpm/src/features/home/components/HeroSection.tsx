@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import { Button } from '@/components/ui/button/Button'
+import { Title } from '@/components/ui/title/Title'
 
 import { ROUTES } from '@/constants/enums.constants'
 
@@ -24,12 +25,12 @@ export const HeroSection = () => {
 	return (
 		<section className='py-10 md:py-20'>
 			<div className='mx-auto max-w-xl text-center'>
-				<h1 className='mb-6 flex flex-col text-2xl font-bold text-zinc-900 md:text-4xl dark:text-white'>
+				<Title type='h1' className='mb-6 flex flex-col text-2xl md:text-4xl'>
 					Tracking and analytics <span className='text-teal-400'>crypto market</span>
-				</h1>
+				</Title>
 
 				<div className='mb-6 grid gap-2 sm:grid-cols-3'>
-					<div className='rounded bg-zinc-200 px-3 py-2 dark:bg-zinc-800'>
+					<div className='rounded border-1 border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-none dark:bg-zinc-800'>
 						<p className='text-xs text-zinc-500 dark:text-zinc-400'>Capitalization</p>
 						<p className='font-mono text-base text-zinc-900 dark:text-white'>
 							${totalCap.toLocaleString()}B
@@ -41,12 +42,12 @@ export const HeroSection = () => {
 						</p>
 					</div>
 
-					<div className='rounded bg-zinc-200 px-3 py-2 dark:bg-zinc-800'>
+					<div className='rounded border-1 border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-none dark:bg-zinc-800'>
 						<p className='text-xs text-zinc-500 dark:text-zinc-400'>BTC Dominance</p>
 						<p className='font-mono text-base text-zinc-900 dark:text-white'>{btcDominance}%</p>
 					</div>
 
-					<div className='rounded bg-zinc-200 px-3 py-2 dark:bg-zinc-800'>
+					<div className='rounded border-1 border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-none dark:bg-zinc-800'>
 						<p className='text-xs text-zinc-500 dark:text-zinc-400'>Activity</p>
 						<p className='font-mono text-base text-zinc-900 dark:text-white'>{marketSentiment}</p>
 					</div>

@@ -22,7 +22,7 @@ export const WalletItem = ({
 	return (
 		<div
 			key={symbol}
-			className='flex items-center justify-between rounded-lg bg-zinc-100 p-3 dark:bg-zinc-900'
+			className='flex items-center justify-between rounded-lg border-1 border-zinc-200 bg-white p-2 dark:border-none dark:bg-zinc-900'
 		>
 			<div className='flex items-center gap-2'>
 				{imageUrl && (
@@ -34,7 +34,7 @@ export const WalletItem = ({
 				)}
 
 				{!imageUrl && (
-					<div className='flex h-10 w-10 items-center justify-center rounded-full bg-white font-semibold dark:bg-zinc-800'>
+					<div className='flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 font-semibold dark:bg-zinc-700/50'>
 						{symbol[0]}
 					</div>
 				)}

@@ -24,14 +24,14 @@ export const CurrencyDetails = ({ coin }: { coin: CurrencyData }) => {
 							'absolute text-green-500 opacity-0 transition-opacity duration-300',
 							changeDirection === 'up' && 'opacity-100'
 						)}
-						size={18}
+						size={16}
 					/>
 					<ArrowBigDown
 						className={cn(
 							'text-red-500 opacity-0 transition-opacity duration-300',
 							changeDirection === 'down' && 'opacity-100'
 						)}
-						size={18}
+						size={16}
 					/>
 					<span className='font-semibold'>{price} $</span>
 				</div>

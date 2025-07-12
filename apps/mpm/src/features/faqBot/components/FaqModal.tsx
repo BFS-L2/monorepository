@@ -1,23 +1,12 @@
+import { ArrowLeft } from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button/Button'
 import { Title } from '@/components/ui/title/Title'
 
+import type { FaqItem, FaqTopic, QuestionId } from '../types'
+
 import { faqTopics } from '@/shared/data/faq.data'
-
-interface FaqItem {
-	id: string
-	question: string
-	answer: string
-}
-
-interface FaqTopic {
-	id: string
-	title: string
-	qa: FaqItem[]
-}
-
-type QuestionId = FaqTopic['id'] | FaqItem['id'] | ''
 
 export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => {
 	const [question, setQuestion] = useState<QuestionId>('')
@@ -72,10 +61,11 @@ export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => 
 	}
 
 	return (
-		<div className='pointer-events-auto w-full max-w-md rounded bg-zinc-200 p-6 shadow-sm dark:border-1 dark:border-zinc-700 dark:bg-zinc-800 dark:shadow-none'>
+		<div className='pointer-events-auto w-full max-w-md rounded-lg bg-white p-6 dark:border-1 dark:border-zinc-700 dark:bg-zinc-800'>
 			<div className='mb-6 flex justify-between'>
 				<Title type='h2'>FAQ</Title>
-				{question === '' ? (
+
+				{question === '' && (
 					<Button
 						variant='ghost'
 						onClick={handleShowMenu}
@@ -83,13 +73,15 @@ export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => 
 					>
 						Close
 					</Button>
-				) : (
+				)}
+
+				{question !== '' && (
 					<Button
 						variant='ghost'
 						onClick={handleBack}
-						className='w-25 text-zinc-900 dark:text-white'
+						className='flex w-25 items-center justify-center gap-2 text-zinc-900 dark:text-white'
 					>
-						← Back
+						<ArrowLeft size={14} /> Back
 					</Button>
 				)}
 			</div>

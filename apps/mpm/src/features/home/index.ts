@@ -9,6 +9,9 @@ export * from './components/currencies/CurrencyCard.tsx'
 export * from './components/currencies/CurrencyDetails.tsx'
 export * from './components/currencies/CurrencyHeader.tsx'
 
+export * from './components/comparison/ComparisonCard.tsx'
+export * from './components/comparison/ComparisonCoins.tsx'
+
 export * from './components/news/NewsCard.tsx'
 export * from './components/news/NewsSection.tsx'
 

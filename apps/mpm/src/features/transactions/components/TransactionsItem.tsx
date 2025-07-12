@@ -25,17 +25,17 @@ export const TransactionsItem = ({
 	const imageUrl = getCurrencyImageUrl(transaction.currency_from)
 
 	return (
-		<div className='grid w-full grid-cols-2 items-center gap-3 rounded-lg bg-zinc-100 p-4 text-zinc-900 md:grid-cols-12 dark:bg-zinc-900 dark:text-white'>
+		<div className='grid w-full grid-cols-2 items-center gap-3 rounded-lg border-1 border-zinc-200 bg-white p-4 text-zinc-900 md:grid-cols-12 dark:border-none dark:bg-zinc-900 dark:text-white'>
 			<div className='col-span-2 flex items-center gap-3 md:col-span-3'>
 				{imageUrl ? (
 					<img
 						src={imageUrl}
 						alt={transaction?.currency_from}
 						loading='lazy'
-						className='h-10 w-10 rounded-full bg-white dark:bg-zinc-800'
+						className='h-10 w-10 rounded-full bg-zinc-100 dark:bg-zinc-800'
 					/>
 				) : (
-					<div className='flex h-10 w-10 items-center justify-center rounded-full bg-white font-bold dark:bg-zinc-800'>
+					<div className='flex h-10 w-10 items-center justify-center rounded-full bg-zinc-100 font-bold dark:bg-zinc-700/50'>
 						{transaction?.currency_from[0]}
 					</div>
 				)}
