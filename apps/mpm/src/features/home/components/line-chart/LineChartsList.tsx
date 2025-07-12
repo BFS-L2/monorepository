@@ -1,7 +1,8 @@
 import { Suspense, lazy } from 'react'
 
-import { Loader } from '@/components/ui/loader/Loader'
 import { Title } from '@/components/ui/title/Title'
+
+import { CryptoChartSkeleton } from './CryptoChartSkeleton'
 
 const CryptoLineChart = lazy(() =>
 	import('./CryptoLineChart').then(module => ({
@@ -16,9 +17,13 @@ export const LineChartsList = () => {
 				Current coins charts
 			</Title>
 			<div className='mt-4 flex flex-col gap-6'>
-				<Suspense fallback={<Loader />}>
+				<Suspense fallback={<CryptoChartSkeleton />}>
 					<CryptoLineChart coin='BTC' />
+				</Suspense>
+				<Suspense fallback={<CryptoChartSkeleton />}>
 					<CryptoLineChart coin='ETH' />
+				</Suspense>
+				<Suspense fallback={<CryptoChartSkeleton />}>
 					<CryptoLineChart coin='XRP' />
 				</Suspense>
 			</div>
