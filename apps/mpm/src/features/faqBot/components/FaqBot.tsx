@@ -11,13 +11,14 @@ export const FaqBot = () => {
 	const { handleShowMenu, isShowMenu } = useToggleModal()
 
 	return (
-		<AnimatePresence>
-			{isShowMenu && (
-				<ModalWindow handleShowMenu={handleShowMenu}>
-					<FaqModal handleShowMenu={handleShowMenu} />
-				</ModalWindow>
-			)}
-
+		<>
+			<AnimatePresence>
+				{isShowMenu && (
+					<ModalWindow handleShowMenu={handleShowMenu}>
+						<FaqModal handleShowMenu={handleShowMenu} />
+					</ModalWindow>
+				)}
+			</AnimatePresence>
 			{!isShowMenu && (
 				<BotIcon
 					onClick={handleShowMenu}
@@ -25,6 +26,6 @@ export const FaqBot = () => {
 					className='fixed right-5 bottom-5 z-40 cursor-pointer rounded-full bg-teal-400 p-2 text-white transition-colors duration-300 hover:bg-teal-500'
 				/>
 			)}
-		</AnimatePresence>
+		</>
 	)
 }

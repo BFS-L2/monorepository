@@ -1,28 +1,14 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
-import {
-	type FieldErrors,
-	type UseFormHandleSubmit,
-	type UseFormRegister,
-	useForm
-} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '@/hooks/auth/useAuth'
 
 import { loginService } from '../services/login.service'
-import type { LoginFormData } from '../types'
-
-interface UseLoginResult {
-	register: UseFormRegister<LoginFormData>
-	handleSubmit: UseFormHandleSubmit<LoginFormData>
-	errors: FieldErrors<LoginFormData>
-	isSubmitting: boolean
-	onSubmit: (data: LoginFormData) => void
-	serverError: string | null
-}
+import type { LoginFormData, UseLoginResult } from '../types'
 
 export const useLogin = (): UseLoginResult => {
 	const [serverError, setServerError] = useState<string | null>(null)

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import { Coins, Scale, X } from 'lucide-react'
 
 import { ModalWindow } from '@/components/ui/model/ModalWindow'
@@ -31,13 +31,7 @@ export const ComparisonCoins = ({ isShowMenu, handleShowMenu }: IComparisonCoins
 		<AnimatePresence>
 			{isShowMenu && (
 				<ModalWindow handleShowMenu={handleShowMenu}>
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: 20 }}
-						transition={{ duration: 0.2 }}
-						className='pointer-events-auto max-h-[90vh] min-h-120 w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6 dark:border-1 dark:border-zinc-700 dark:bg-zinc-800 dark:ring-zinc-700'
-					>
+					<div className='pointer-events-auto max-h-[90vh] min-h-120 w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6 dark:border-1 dark:border-zinc-700 dark:bg-zinc-800 dark:ring-zinc-700'>
 						<div className='flex items-start justify-between'>
 							<div className='flex items-center gap-2'>
 								<Scale size={20} className='text-teal-400' />
@@ -97,7 +91,7 @@ export const ComparisonCoins = ({ isShowMenu, handleShowMenu }: IComparisonCoins
 								<ComparisonList secondChangeCoin={secondChangeCoin} firstCoin={firstCoin} />
 							)}
 						</div>
-					</motion.div>
+					</div>
 				</ModalWindow>
 			)}
 		</AnimatePresence>

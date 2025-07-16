@@ -1,15 +1,10 @@
 import { Title } from '@/components/ui/title/Title'
 
-import { TransactionsItems } from './TransactionsItems'
-import type { CurrencyData } from '@/shared/types/currencies.types'
+import type { ITransactionsItems } from '../types'
 
-export const TransactionsSection = ({
-	currenciesData,
-	isCriticalLoading
-}: {
-	currenciesData: CurrencyData[] | undefined
-	isCriticalLoading: boolean
-}) => {
+import { TransactionsItems } from './TransactionsItems'
+
+export const TransactionsSection = ({ currenciesData, isCriticalLoading }: ITransactionsItems) => {
 	return (
 		<div className='mt-4 flex w-full flex-col items-start gap-2 rounded-xl bg-white p-6 text-teal-400 dark:bg-zinc-800'>
 			<Title type='h3' className='mb-2 text-xl font-bold text-teal-400 dark:text-teal-400'>

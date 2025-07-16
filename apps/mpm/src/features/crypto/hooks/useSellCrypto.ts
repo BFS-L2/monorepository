@@ -6,18 +6,12 @@ import toast from 'react-hot-toast'
 import { queryClient } from '@/utils/queryClient'
 
 import { cryptoService } from '../services/crypto.service'
+import type { BuySellProps } from '../types'
 
 import { useBalanceOptions } from './useBalancesToOptions'
 import { useCoinConverter } from './useCoinConverter'
-import type { WalletResponse } from '@/features/wallet'
-import type { CurrencyData } from '@/shared/types/currencies.types'
 
-interface IUseSellCrypto {
-	wallet: WalletResponse | undefined
-	currenciesData: CurrencyData[] | undefined
-}
-
-export const useSellCrypto = ({ wallet, currenciesData }: IUseSellCrypto) => {
+export const useSellCrypto = ({ wallet, currenciesData }: BuySellProps) => {
 	const walletBalanceOptions = useBalanceOptions(wallet?.cryptoBalances || {})
 
 	const [selectedCoin, setSelectedCoin] = useState<{

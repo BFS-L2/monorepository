@@ -5,20 +5,11 @@ import { CRYPTO_COMPARE } from '@/constants/api.constants'
 import { FormatDate } from '@/utils/formatDate.utils'
 import { cn } from '@/utils/tailwind.utils'
 
-import type { TransactionsResponse } from '../types'
+import type { ITransactionsItem } from '../types'
 
-import type { CurrencyData } from '@/shared/types/currencies.types'
-
-export const TransactionsItem = ({
-	transaction,
-	currenciesData
-}: {
-	transaction: TransactionsResponse
-	currenciesData: CurrencyData[] | undefined
-}) => {
+export const TransactionsItem = ({ transaction, currenciesData }: ITransactionsItem) => {
 	const getCurrencyImageUrl = (currencyName: string): string | null => {
 		const info = currenciesData?.find(c => c.CoinInfo.Name === currencyName)
-
 		return info?.CoinInfo.ImageUrl ? `${CRYPTO_COMPARE}${info.CoinInfo.ImageUrl}` : null
 	}
 

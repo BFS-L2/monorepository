@@ -1,27 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
-import {
-	type FieldErrors,
-	type UseFormHandleSubmit,
-	type UseFormRegister,
-	useForm
-} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import { queryClient } from '@/utils/queryClient'
 
 import { userService } from '../services/profile.service'
-import type { UserPasswordsFormData } from '../types'
-
-interface UseChangePasswordResult {
-	register: UseFormRegister<UserPasswordsFormData>
-	handleSubmit: UseFormHandleSubmit<UserPasswordsFormData>
-	errors: FieldErrors<UserPasswordsFormData>
-	isSubmitting: boolean
-	onSubmit: (data: UserPasswordsFormData) => void
-	serverError: string | null
-}
+import type { UseChangePasswordResult, UserPasswordsFormData } from '../types'
 
 export const useChangePassword = (): UseChangePasswordResult => {
 	const [serverError, setServerError] = useState<string | null>(null)

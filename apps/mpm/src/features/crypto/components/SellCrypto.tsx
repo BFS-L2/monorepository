@@ -5,17 +5,10 @@ import { Hr } from '@/components/ui/hr/Hr'
 import { Select } from '@/components/ui/select/Select'
 import { Title } from '@/components/ui/title/Title'
 
-import type { WalletResponse } from '../../wallet/types'
 import { useSellCrypto } from '../hooks/useSellCrypto'
+import type { BuySellProps } from '../types'
 
-import type { CurrencyData } from '@/shared/types/currencies.types'
-
-interface ISellCrypto {
-	wallet: WalletResponse | undefined
-	currenciesData: CurrencyData[] | undefined
-}
-
-export const SellCrypto = ({ wallet, currenciesData }: ISellCrypto) => {
+export const SellCrypto = ({ wallet, currenciesData }: BuySellProps) => {
 	const {
 		walletBalanceOptions,
 		selectedCoin,

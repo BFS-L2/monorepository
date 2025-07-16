@@ -1,28 +1,14 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
-import {
-	type FieldErrors,
-	type UseFormHandleSubmit,
-	type UseFormRegister,
-	useForm
-} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { ROUTES } from '@/constants/enums.constants'
 
 import { registerService } from '../services/register.service'
-import type { RegisterFormData } from '../types'
-
-interface UseRegisterResult {
-	register: UseFormRegister<RegisterFormData>
-	handleSubmit: UseFormHandleSubmit<RegisterFormData>
-	errors: FieldErrors<RegisterFormData>
-	isSubmitting: boolean
-	onSubmit: (data: RegisterFormData) => void
-	serverError: string | null
-}
+import type { RegisterFormData, UseRegisterResult } from '../types'
 
 export const useRegister = (): UseRegisterResult => {
 	const [serverError, setServerError] = useState<string | null>(null)

@@ -1,12 +1,8 @@
 import { useMemo } from 'react'
 
-interface IBalanceOption {
-	label: string
-	value: string
-}
-export const useBalanceOptions = (
-	balances: Record<string, number>
-): IBalanceOption[] => {
+import type { BalanceOptionProps } from '../types'
+
+export const useBalanceOptions = (balances: Record<string, number>): BalanceOptionProps[] => {
 	return useMemo(() => {
 		return Object.entries(balances ?? {})
 			?.map(([currency, amount]) => ({

@@ -1,15 +1,9 @@
-import type { UserResponse } from '../types'
+import type { IProfileInformation } from '../types'
 
 import { AvatarUpload } from './AvatarUpload'
 import { ProfileSkeleton } from './ProfileInfoSkeleton'
 
-export const ProfileInformation = ({
-	user,
-	isLoading
-}: {
-	user: UserResponse
-	isLoading: boolean
-}) => {
+export const ProfileInformation = ({ user, isLoading }: IProfileInformation) => {
 	return (
 		<>
 			{isLoading && <ProfileSkeleton />}

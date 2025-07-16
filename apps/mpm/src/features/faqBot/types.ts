@@ -11,3 +11,13 @@ export interface FaqTopic {
 }
 
 export type QuestionId = FaqTopic['id'] | FaqItem['id'] | ''
+
+export interface IFaqTopicsList {
+	topics: FaqTopic[]
+	onSelect: (id: string) => void
+}
+
+export interface IFaqQuestionsList {
+	questions: FaqItem[]
+	onSelect: (id: string) => void
+}

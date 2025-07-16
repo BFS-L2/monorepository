@@ -2,20 +2,9 @@ import { useCallback, useMemo, useState } from 'react'
 
 import { parsePrice } from '@/utils/parsePrice.utils'
 
-import type { CurrencyData } from '@/shared/types/currencies.types'
+import type { CoinConverterProps } from '../types'
 
-type ConverterType = 'buy' | 'sell'
-
-interface IUseCoinConverter {
-	selectedCoin: {
-		label: string
-		value: string
-	} | null
-	type: ConverterType
-	currenciesData?: CurrencyData[] | undefined
-}
-
-export const useCoinConverter = ({ selectedCoin, type, currenciesData }: IUseCoinConverter) => {
+export const useCoinConverter = ({ selectedCoin, type, currenciesData }: CoinConverterProps) => {
 	const [coinAmount, setCoinAmount] = useState<string>('')
 	const [usdAmount, setUsdAmount] = useState<string>('')
 

@@ -1,108 +1,54 @@
-# CryptoTrade Hub (MPM) - Платформа для трейдинга криптовалютой
+# React + TypeScript + Vite
 
-[![Vercel Deployment](https://img.shields.io/badge/deployed_on-vercel-black?logo=vercel)](https://cryptotrade-hub.vercel.app)
-![React](https://img.shields.io/badge/react-19.1.0-blue?logo=react)
-![TypeScript](https://img.shields.io/badge/typescript-5.8.3-blue?logo=typescript)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Полнофункциональная платформа для мониторинга и торговли криптовалютами с реальными данными, графиками и безопасной аутентификацией.
+Currently, two official plugins are available:
 
-## 🔥 Ключевые функции
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- **Торговый терминал**
-  - Покупка/продажа криптовалюты в режиме реального времени
-  - Портфель активов с динамическим пересчетом баланса
-- **Аналитика рынка**
-  - Интерактивные графики (Chart.js)
-  - Сравнение криптовалют
-  - Исторические данные
-- **Новостная лента**
-  - Актуальные новости крипторынка
-- **Безопасность**
-  - JWT аутентификация с HTTP-only cookies
-  - Защищенные роуты
-- **Профиль пользователя**
-  - История транзакций
-  - Настройки аккаунта
+## Expanding the ESLint configuration
 
-## 🛠 Технологический стек
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-| Категория        | Технологии                                                                 |
-|------------------|----------------------------------------------------------------------------|
-| **Frontend**     | ![React](https://img.shields.io/badge/React-19.1.0-61DAFB?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?logo=typescript) ![Vite](https://img.shields.io/badge/Vite-7.0.0-B73BFE?logo=vite) |
-| **State**        | ![Zustand](https://img.shields.io/badge/Zustand-5.0.6-764ABC) ![React Query](https://img.shields.io/badge/React_Query-5.81.5-FF4154?logo=reactquery) |
-| **Стилизация**   | ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.11-06B6D4?logo=tailwindcss) ![Tailwind Merge](https://img.shields.io/badge/Tailwind_Merge-3.3.1-38BDF8) ![clsx](https://img.shields.io/badge/clsx-2.1.1-4D4D4D) |
-| **Роутинг**      | ![React Router](https://img.shields.io/badge/React_Router-7.6.3-CA4245?logo=reactrouter) |
-| **Формы**        | ![React Hook Form](https://img.shields.io/badge/React_Hook_Form-7.59.0-EC5990) ![React Select](https://img.shields.io/badge/React_Select-5.10.1-FF4785) |
-| **Визуализация** | ![Chart.js](https://img.shields.io/badge/Chart.js-4.5.0-FF6384?logo=chartdotjs) ![Swiper](https://img.shields.io/badge/Swiper-11.2.10-6332F6?logo=swiper) |
-| **Анимация**     | ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.19.2-0055FF?logo=framer) |
-| **API клиент**   | ![Axios](https://img.shields.io/badge/Axios-1.10.0-5A29E4?logo=axios) |
-| **Уведомления**  | ![React Hot Toast](https://img.shields.io/badge/React_Hot_Toast-2.5.2-333333?logo=react) |
-| **Иконки**       | ![Lucide](https://img.shields.io/badge/Lucide-0.525.0-333333?logo=lucide) |
+```js
+export default tseslint.config({
+	extends: [
+		// Remove ...tseslint.configs.recommended and replace with this
+		...tseslint.configs.recommendedTypeChecked,
+		// Alternatively, use this for stricter rules
+		...tseslint.configs.strictTypeChecked,
+		// Optionally, add this for stylistic rules
+		...tseslint.configs.stylisticTypeChecked
+	],
+	languageOptions: {
+		// other options...
+		parserOptions: {
+			project: ['./tsconfig.node.json', './tsconfig.app.json'],
+			tsconfigRootDir: import.meta.dirname
+		}
+	}
+})
+```
 
-**Дополнительные инструменты:**
-- ![ESLint](https://img.shields.io/badge/ESLint-9.30.0-4B32C3?logo=eslint)
-- ![Prettier](https://img.shields.io/badge/Prettier-3.6.2-F7B93E?logo=prettier)
-- ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel)
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## 📂 Структура проекта
+```js
+// eslint.config.js
+import reactDom from 'eslint-plugin-react-dom'
+import reactX from 'eslint-plugin-react-x'
 
-| Директория/Файл       | Назначение                                                                 | Примеры содержимого |
-|-----------------------|---------------------------------------------------------------------------|---------------------|
-| **api/**              | Внешние API запросы                                                       | `interceptors.ts` |
-| **assets/**           | Статические ресурсы                                                       | Иконки, изображения, шрифты |
-| **components/**       | Общие UI компоненты                                                       | `Button.tsx`, `FormInput.tsx` |
-| **constants/**        | Константы приложения                                                      | `api.constants.ts`, `enums.constants.ts` |
-| **features/**         | Бизнес-фичи (организованы по feature-sliced)                              | |
-| ┣━ **login/**         | Модуль аутентификации                                                     | |
-| ┃ ┣━ components/      | Компоненты фичи                                                           | `LoginForm.tsx` |
-| ┃ ┣━ hooks/           | Локальные хуки                                                            | `useAuth.ts` |
-| ┃ ┣━ services/        | Логика и API                                                              | `login.service.ts`, `types.ts` |
-| ┃ ┣━ types.ts         | Типы данных этой  (DTO, модели, интерфейсы)                               | |  
-| ┃ ┗━ index.ts         | Сервисы, API-запросы фичи                                                 | |
-| **hooks/**            | Глобальные хуки                                                           | `useCurrencies.ts`, `useLogout.ts` |
-| **pages/**            | Страницы приложения                                                       | `Dashboard.tsx` |
-| **providers/**        | Провайдеры контекстов                                                     | `AuthProvider.tsx` |
-| **routes/**           | Конфигурация маршрутизации                                                | `AppRouter.tsx` |
-| **shared/**           | Общие ресурсы                                                             | |
-| ┣━ **data/**          | Моки                                                                      | `market.data.ts` |
-| ┗━ **types/**         | Глобальные типы                                                           | `index.types.ts` |
-| **store/**            | Состояние (Zustand)                                                       | `сompareStore.ts`, `themeStore.ts` |
-| **utils/**            | Вспомогательные утилиты                                                   | `dateFormatter.ts` |
-| **main.tsx**          | Точка входа приложения                                                    | Инициализация React |
-
-### 🚀 Инструкция по запуску проекта
-
-#### Предварительные требования
-| Компонент       | Минимальная версия | Как проверить           |
-|-----------------|-------------------|-------------------------|
-| Node.js         | 18.x              | `node -v`               |
-| pnpm            | 8.x               | `pnpm -v`               |
-| Git             | 2.x               | `git --version`         |
-
-#### 1. Установка зависимостей
-```bash
-# Установите pnpm (если ещё не установлен)
-npm install -g pnpm
-
-# Клонируйте репозиторий
-git clone https://github.com/BFS-L2/monorepository.git
-cd monorepository/apps/mpm
-
-# Установите зависимости для проекта MPM
-pnpm install
-
-## ⚙️ Настройка окружения
-
-Создайте файл `.env.local` в папке `apps/mpm`:
-
-```env
-# API конфигурация (production)
-VITE_API_URL=https://back-express-mpm.onrender.com/api
-
-# ⚠️ Внимание! Локальная разработка:
-# 1. Запросы с localhost блокируются из-за:
-#    - Строгих CORS-правил бекенда (https://monorepository-mpm.vercel.app/)
-#    - Требований к httpOnly cookies
-# 2. Для разработки используйте:
-#    а) Локальный бекенд с идентичными настройками
-#    б) Или настройте прокси в vite.config.ts
+export default tseslint.config({
+	plugins: {
+		// Add the react-x and react-dom plugins
+		'react-x': reactX,
+		'react-dom': reactDom
+	},
+	rules: {
+		// other rules...
+		// Enable its recommended typescript rules
+		...reactX.configs['recommended-typescript'].rules,
+		...reactDom.configs.recommended.rules
+	}
+})
+```

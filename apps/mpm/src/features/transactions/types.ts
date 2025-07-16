@@ -15,3 +15,13 @@ export interface IUserTransactions {
 	transactions: TransactionsResponse[]
 	currenciesData: CurrencyData[] | undefined
 }
+
+export interface ITransactionsItems {
+	currenciesData: CurrencyData[] | undefined
+	isCriticalLoading: boolean
+}
+
+export interface ITransactionsItem {
+	transaction: TransactionsResponse
+	currenciesData: CurrencyData[] | undefined
+}
