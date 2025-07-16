@@ -1,54 +1,71 @@
-# React + TypeScript + Vite
+# CryptoTrade Hub (MPM) - Платформа для трейдинга криптовалютой
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Vercel Deployment](https://img.shields.io/badge/deployed_on-vercel-black?logo=vercel)](https://cryptotrade-hub.vercel.app)
+![React](https://img.shields.io/badge/react-19.1.0-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/typescript-5.8.3-blue?logo=typescript)
 
-Currently, two official plugins are available:
+Полнофункциональная платформа для мониторинга и торговли криптовалютами с реальными данными, графиками и безопасной аутентификацией.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Скриншот приложения](https://via.placeholder.com/800x400?text=CryptoTrade+Screenshot) <!-- Замените на реальный скриншот -->
 
-## Expanding the ESLint configuration
+## 🔥 Ключевые функции
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Торговый терминал**
+  - Покупка/продажа криптовалюты в режиме реального времени
+  - Портфель активов с динамическим пересчетом баланса
+- **Аналитика рынка**
+  - Интерактивные графики (Chart.js)
+  - Сравнение криптовалют
+  - Исторические данные
+- **Новостная лента**
+  - Актуальные новости крипторынка
+- **Безопасность**
+  - JWT аутентификация с HTTP-only cookies
+  - Защищенные роуты
+- **Профиль пользователя**
+  - История транзакций
+  - Настройки аккаунта
 
-```js
-export default tseslint.config({
-	extends: [
-		// Remove ...tseslint.configs.recommended and replace with this
-		...tseslint.configs.recommendedTypeChecked,
-		// Alternatively, use this for stricter rules
-		...tseslint.configs.strictTypeChecked,
-		// Optionally, add this for stylistic rules
-		...tseslint.configs.stylisticTypeChecked
-	],
-	languageOptions: {
-		// other options...
-		parserOptions: {
-			project: ['./tsconfig.node.json', './tsconfig.app.json'],
-			tsconfigRootDir: import.meta.dirname
-		}
-	}
-})
-```
+## 🛠 Технологический стек
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Основные технологии
+| Категория       | Технологии                                                                 |
+|-----------------|----------------------------------------------------------------------------|
+| Frontend        | ![React](https://img.shields.io/badge/React-19.1.0-61DAFB?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?logo=typescript) ![Vite](https://img.shields.io/badge/Vite-7.0.0-B73BFE?logo=vite) |
+| State Management| ![Zustand](https://img.shields.io/badge/Zustand-5.0.6-764ABC) ![React Query](https://img.shields.io/badge/React_Query-5.81.5-FF4154?logo=reactquery) |
+| Стилизация      | ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.11-06B6D4?logo=tailwindcss) |
+| Роутинг         | ![React Router](https://img.shields.io/badge/React_Router-7.6.3-CA4245?logo=reactrouter) |
+| Формы           | ![React Hook Form](https://img.shields.io/badge/React_Hook_Form-7.59.0-EC5990) |
+| Визуализация    | ![Chart.js](https://img.shields.io/badge/Chart.js-4.5.0-FF6384?logo=chartdotjs) |
+| Анимация        | ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.19.2-0055FF?logo=framer) |
 
-```js
-// eslint.config.js
-import reactDom from 'eslint-plugin-react-dom'
-import reactX from 'eslint-plugin-react-x'
+### Инструменты разработки
+- **Linting**: ESLint (strict TypeScript rules)
+- **Formatting**: Prettier + Tailwind CSS
+- **Bundle Analysis**: Rollup Visualizer
+- **Deployment**: Vercel
 
-export default tseslint.config({
-	plugins: {
-		// Add the react-x and react-dom plugins
-		'react-x': reactX,
-		'react-dom': reactDom
-	},
-	rules: {
-		// other rules...
-		// Enable its recommended typescript rules
-		...reactX.configs['recommended-typescript'].rules,
-		...reactDom.configs.recommended.rules
-	}
-})
-```
+### 📂 Структура проекта
+src/
+├── api/             # Работа с внешними API
+├── assets/          # Статические ресурсы (иконки, изображения, шрифты)
+├── components/      # Переиспользуемые UI-компоненты
+├── constants/       # Общие константы приложения
+├── features/        # Отдельные бизнес-фичи приложения
+│   └── featureA/
+│       ├── components/   # Компоненты, относящиеся только к этой фиче
+│       ├── hooks/        # Локальные хуки конкретной фичи
+│       └── services/     # Работа с API / утилиты / типы для этой фичи
+│           ├── types.ts  # Типы данных этой фичи (DTO, модели, интерфейсы)
+│           └── index.ts  # Сервисы, API-запросы этой фичи
+├── hooks/           # Общие хуки для всего приложения
+├── pages/           # Страницы, которые рендерятся по роутам
+├── providers/       # Провайдеры контекстов (Auth, Theme и т.п.)
+├── routes/          # Конфигурация маршрутов приложения
+├── shared/          # Общие типы данных, утилиты и вспомогательные структуры
+│   ├── data/        # Фиксированные данные, мок-данные
+│   └── types/       # Общие типы данных, которые используются в разных частях проекта
+├── store/           # Zustand хранилища состояния
+├── utils/           # Вспомогательные утилиты (форматирование, парсеры и т.п.)
+├── main.tsx         # Точка входа приложения
+└── vite-env.d.ts    # Глобальные типы окружения для Vite
