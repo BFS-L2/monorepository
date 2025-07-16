@@ -53,7 +53,7 @@
 | **components/**       | Общие UI компоненты                                                       | `Button.tsx`, `FormInput.tsx` |
 | **constants/**        | Константы приложения                                                      | `api.constants.ts`, `enums.constants.ts` |
 | **features/**         | Бизнес-фичи (организованы по feature-sliced)                              | |
-| ┣━ **auth/**          | Модуль аутентификации                                                     | |
+| ┣━ **login/**         | Модуль аутентификации                                                     | |
 | ┃ ┣━ components/      | Компоненты фичи                                                           | `LoginForm.tsx` |
 | ┃ ┣━ hooks/           | Локальные хуки                                                            | `useAuth.ts` |
 | ┃ ┣━ services/        | Логика и API                                                              | `login.service.ts`, `types.ts` |
@@ -90,3 +90,19 @@ cd monorepository/apps/mpm
 
 # Установите зависимости для проекта MPM
 pnpm install
+
+## ⚙️ Настройка окружения
+
+Создайте файл `.env.local` в папке `apps/mpm`:
+
+```env
+# API конфигурация (production)
+VITE_API_URL=https://back-express-mpm.onrender.com/api
+
+# ⚠️ Внимание! Локальная разработка:
+# 1. Запросы с localhost блокируются из-за:
+#    - Строгих CORS-правил бекенда (https://monorepository-mpm.vercel.app/)
+#    - Требований к httpOnly cookies
+# 2. Для разработки используйте:
+#    а) Локальный бекенд с идентичными настройками
+#    б) Или настройте прокси в vite.config.ts
