@@ -8,11 +8,17 @@ import type { FaqItem, FaqTopic, QuestionId } from '../types'
 
 import { faqTopics } from '@/shared/data/faq.data'
 
-export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => {
+interface IFaqModal {
+	handleShowMenu: () => void
+}
+
+export const FaqModal = ({ handleShowMenu }: IFaqModal) => {
 	const [question, setQuestion] = useState<QuestionId>('')
 
-	const handleClick = (id: string) => {
-		setQuestion(id)
+	const handleClick = (id: string | undefined): void => {
+		if (id) {
+			setQuestion(id)
+		}
 	}
 
 	const currentTopic: FaqTopic | undefined = faqTopics.find(item => item.id === question)
@@ -25,7 +31,11 @@ export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => 
 		item => item.id === question
 	)
 
-	const handleBack = () => {
+	const changeActiveQuestion = (itemId: string): void => {
+		handleClick(itemId)
+	}
+
+	const handleBack = (): void => {
 		if (question.includes('_')) {
 			setQuestion(currentAnswerTopic?.id ?? '')
 		} else {
@@ -38,7 +48,7 @@ export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => 
 	if (question && !question.includes('_')) {
 		changeQuestions = currentTopic?.qa.map(item => {
 			return (
-				<Button onClick={() => handleClick(item.id)} key={item.id} className='text-start'>
+				<Button onClick={() => changeActiveQuestion(item.id)} key={item.id} className='text-start'>
 					{item.question}
 				</Button>
 			)
@@ -53,7 +63,7 @@ export const FaqModal = ({ handleShowMenu }: { handleShowMenu: () => void }) => 
 	} else {
 		changeQuestions = faqTopics.map(item => {
 			return (
-				<Button onClick={() => handleClick(item.id)} key={item.id} className='text-start'>
+				<Button onClick={() => changeActiveQuestion(item.id)} key={item.id} className='text-start'>
 					{item.title}
 				</Button>
 			)

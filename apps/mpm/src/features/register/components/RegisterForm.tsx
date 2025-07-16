@@ -7,14 +7,7 @@ import { Title } from '@/components/ui/title/Title'
 import { useRegister } from '../hooks/useRegister'
 
 export const RegisterForm = () => {
-	const {
-		onSubmit,
-		serverError,
-		register,
-		handleSubmit,
-		errors,
-		isSubmitting
-	} = useRegister()
+	const { onSubmit, serverError, register, handleSubmit, errors, isSubmitting } = useRegister()
 
 	return (
 		<form
@@ -39,10 +32,8 @@ export const RegisterForm = () => {
 							message: 'Name must be at least 3 characters long'
 						},
 						pattern: {
-							value:
-								/^(?!.*(<|>|script|onerror|onload|javascript:|&#|&lt;|&gt;)).*$/i,
-							message:
-								'Forbidden to enter HTML tags or potentially dangerous content'
+							value: /^(?!.*(<|>|script|onerror|onload|javascript:|&#|&lt;|&gt;)).*$/i,
+							message: 'Forbidden to enter HTML tags or potentially dangerous content'
 						}
 					})
 				}}

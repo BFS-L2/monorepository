@@ -1,14 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import {
-	BarChart2,
-	ClipboardList,
-	Coins,
-	DollarSign,
-	Scale,
-	Star,
-	TrendingUp,
-	X
-} from 'lucide-react'
+import { Coins, Scale, X } from 'lucide-react'
 
 import { ModalWindow } from '@/components/ui/model/ModalWindow'
 import { Select } from '@/components/ui/select/Select'
@@ -20,24 +11,21 @@ import { useCompareStore } from '@/store/сompareStore'
 
 import { useCurrenciesData } from '@/hooks/api/useCurrencies'
 
-import { parsePrice } from '@/utils/parsePrice.utils'
-import { cn } from '@/utils/tailwind.utils'
-
-import { ComparisonCard } from './ComparisonCard'
+import { ComparisonList } from './ComparisonList'
 import { useCurrencyOptions } from '@/features/crypto'
 
-export const ComparisonCoins = ({
-	isShowMenu,
-	handleShowMenu
-}: {
+interface IComparisonCoins {
 	isShowMenu: boolean
 	handleShowMenu: () => void
-}) => {
+}
+
+export const ComparisonCoins = ({ isShowMenu, handleShowMenu }: IComparisonCoins) => {
 	const { currenciesData } = useCurrenciesData()
 	const currencyOptions = useCurrencyOptions(currenciesData)
+
 	const { firstCoin, secondCoin, setSecondCoin } = useCompareStore()
 
-	const second = currenciesData?.find(coin => coin.CoinInfo.Name === secondCoin?.label)
+	const secondChangeCoin = currenciesData?.find(coin => coin.CoinInfo.Name === secondCoin?.label)
 
 	return (
 		<AnimatePresence>
@@ -105,63 +93,8 @@ export const ComparisonCoins = ({
 									</div>
 								</div>
 							</div>
-
 							{secondCoin && (
-								<div>
-									<h3 className='mb-4 flex items-center gap-2 text-sm font-semibold tracking-wide text-teal-400 uppercase dark:text-teal-400'>
-										<BarChart2 className='h-4 w-4' /> Comparison Results
-									</h3>
-
-									<div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-										<ComparisonCard
-											icon={<DollarSign className='h-5 w-5' />}
-											title='Price'
-											values={[
-												`${parsePrice(firstCoin?.DISPLAY?.USD?.PRICE)} $`,
-												`${parsePrice(second?.DISPLAY?.USD?.PRICE)} $`
-											]}
-										/>
-
-										<ComparisonCard
-											icon={<ClipboardList className='h-5 w-5' />}
-											title='Market Cap'
-											values={[
-												firstCoin?.DISPLAY?.USD?.MKTCAP ?? 'N/A',
-												second?.DISPLAY?.USD?.MKTCAP ?? 'N/A'
-											]}
-										/>
-
-										<ComparisonCard
-											icon={<Star className='h-5 w-5' />}
-											title='Weiss Rating'
-											values={[
-												firstCoin?.CoinInfo?.Rating?.Weiss?.Rating ?? 'N/A',
-												second?.CoinInfo?.Rating?.Weiss?.Rating ?? 'N/A'
-											]}
-										/>
-
-										<ComparisonCard
-											icon={<TrendingUp className='h-5 w-5' />}
-											title='24h Change'
-											values={[
-												firstCoin?.DISPLAY?.USD?.CHANGEPCT24HOUR + '%',
-												second?.DISPLAY?.USD?.CHANGEPCT24HOUR + '%'
-											]}
-											valueColors={[
-												cn(
-													Number(firstCoin?.DISPLAY?.USD?.CHANGE24HOUR) > 0
-														? 'text-green-500'
-														: 'text-red-500'
-												),
-												cn(
-													Number(second?.DISPLAY?.USD?.CHANGE24HOUR) > 0
-														? 'text-green-500'
-														: 'text-red-500'
-												)
-											]}
-										/>
-									</div>
-								</div>
+								<ComparisonList secondChangeCoin={secondChangeCoin} firstCoin={firstCoin} />
 							)}
 						</div>
 					</motion.div>

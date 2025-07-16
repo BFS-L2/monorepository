@@ -6,16 +6,20 @@ import { cn } from '@/utils/tailwind.utils'
 import type { CurrencyData } from '@/shared/types/currencies.types'
 
 export interface ICoinCard {
-	coin: CurrencyData
+	coin: CurrencyData | undefined
 	onInfoClick: (coinId: string | undefined) => void
 	activeCoinId: string | null
 }
 
 export const CoinCard = ({ coin, onInfoClick, activeCoinId }: ICoinCard) => {
-	const price = parsePrice(coin.DISPLAY?.USD?.PRICE)
-	const high = parsePrice(coin.DISPLAY?.USD?.HIGH24HOUR)
-	const low = parsePrice(coin.DISPLAY?.USD?.LOW24HOUR)
-	const openPrice = parsePrice(coin.DISPLAY?.USD?.OPEN24HOUR)
+	const price = parsePrice(coin?.DISPLAY?.USD?.PRICE)
+	const high = parsePrice(coin?.DISPLAY?.USD?.HIGH24HOUR)
+	const low = parsePrice(coin?.DISPLAY?.USD?.LOW24HOUR)
+	const openPrice = parsePrice(coin?.DISPLAY?.USD?.OPEN24HOUR)
+
+	const handleCloseClick = (): void => {
+		onInfoClick(coin?.CoinInfo?.Id)
+	}
 
 	return (
 		<div
@@ -26,10 +30,10 @@ export const CoinCard = ({ coin, onInfoClick, activeCoinId }: ICoinCard) => {
 		>
 			<div className='flex flex-row justify-between'>
 				<span className='text-md bg-gradient-to-r from-teal-300 to-teal-500 bg-clip-text leading-tight font-bold text-transparent'>
-					{coin.CoinInfo.FullName}
+					{coin?.CoinInfo.FullName}
 				</span>
 				<X
-					onClick={() => onInfoClick(coin?.CoinInfo?.Id)}
+					onClick={handleCloseClick}
 					size={26}
 					className='cursor-pointer rounded-sm bg-zinc-100 p-1 text-teal-400 transition-colors duration-300 hover:bg-zinc-200/50 hover:text-teal-300 dark:bg-zinc-700 dark:hover:bg-zinc-600'
 				/>

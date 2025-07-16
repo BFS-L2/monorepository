@@ -1,7 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import {
+	type FieldErrors,
+	type UseFormHandleSubmit,
+	type UseFormRegister,
+	useForm
+} from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import { queryClient } from '@/utils/queryClient'
@@ -9,7 +14,16 @@ import { queryClient } from '@/utils/queryClient'
 import { userService } from '../services/profile.service'
 import type { UserEmailFormData } from '../types'
 
-export const useChangeEmail = () => {
+interface UseChangeEmailResult {
+	register: UseFormRegister<UserEmailFormData>
+	handleSubmit: UseFormHandleSubmit<UserEmailFormData>
+	errors: FieldErrors<UserEmailFormData>
+	isSubmitting: boolean
+	onSubmit: (data: UserEmailFormData) => void
+	serverError: string | null
+}
+
+export const useChangeEmail = (): UseChangeEmailResult => {
 	const [serverError, setServerError] = useState<string | null>(null)
 
 	const {
@@ -26,7 +40,7 @@ export const useChangeEmail = () => {
 
 			toast.success('Email successfully changed!')
 
-			setServerError('')
+			setServerError(null)
 			reset()
 		},
 		onError: error => {

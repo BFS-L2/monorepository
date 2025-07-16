@@ -7,9 +7,13 @@ import { usePriceDirection } from '../../hooks/usePriceDirection'
 
 import type { CurrencyData } from '@/shared/types/currencies.types'
 
-export const CurrencyDetails = ({ coin }: { coin: CurrencyData }) => {
-	const price = parsePrice(coin.DISPLAY?.USD?.PRICE)
-	const marketCapitalization = coin.DISPLAY?.USD?.MKTCAP
+interface ICurrencyDetails {
+	coin: CurrencyData | undefined
+}
+
+export const CurrencyDetails = ({ coin }: ICurrencyDetails) => {
+	const price = parsePrice(coin?.DISPLAY?.USD?.PRICE)
+	const marketCapitalization = coin?.DISPLAY?.USD?.MKTCAP
 	const rating = coin?.CoinInfo?.Rating?.Weiss?.Rating || 'N/A'
 
 	const changeDirection = usePriceDirection(price)
