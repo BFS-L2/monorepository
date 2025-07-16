@@ -26,22 +26,26 @@
 
 ## 🛠 Технологический стек
 
-### Основные технологии
-| Категория       | Технологии                                                                 |
-|-----------------|----------------------------------------------------------------------------|
-| Frontend        | ![React](https://img.shields.io/badge/React-19.1.0-61DAFB?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?logo=typescript) ![Vite](https://img.shields.io/badge/Vite-7.0.0-B73BFE?logo=vite) |
-| State Management| ![Zustand](https://img.shields.io/badge/Zustand-5.0.6-764ABC) ![React Query](https://img.shields.io/badge/React_Query-5.81.5-FF4154?logo=reactquery) |
-| Стилизация      | ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.11-06B6D4?logo=tailwindcss) |
-| Роутинг         | ![React Router](https://img.shields.io/badge/React_Router-7.6.3-CA4245?logo=reactrouter) |
-| Формы           | ![React Hook Form](https://img.shields.io/badge/React_Hook_Form-7.59.0-EC5990) |
-| Визуализация    | ![Chart.js](https://img.shields.io/badge/Chart.js-4.5.0-FF6384?logo=chartdotjs) |
-| Анимация        | ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.19.2-0055FF?logo=framer) |
+### 🛠 Технологический стек
 
-### Инструменты разработки
-- **Linting**: ESLint (strict TypeScript rules)
-- **Formatting**: Prettier + Tailwind CSS
-- **Bundle Analysis**: Rollup Visualizer
-- **Deployment**: Vercel
+| Категория        | Технологии                                                                 |
+|------------------|----------------------------------------------------------------------------|
+| **Frontend**     | ![React](https://img.shields.io/badge/React-19.1.0-61DAFB?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?logo=typescript) ![Vite](https://img.shields.io/badge/Vite-7.0.0-B73BFE?logo=vite) |
+| **State**        | ![Zustand](https://img.shields.io/badge/Zustand-5.0.6-764ABC) ![React Query](https://img.shields.io/badge/React_Query-5.81.5-FF4154?logo=reactquery) |
+| **Стилизация**   | ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.11-06B6D4?logo=tailwindcss) ![Tailwind Merge](https://img.shields.io/badge/Tailwind_Merge-3.3.1-38BDF8) ![clsx](https://img.shields.io/badge/clsx-2.1.1-4D4D4D) |
+| **Роутинг**      | ![React Router](https://img.shields.io/badge/React_Router-7.6.3-CA4245?logo=reactrouter) |
+| **Формы**        | ![React Hook Form](https://img.shields.io/badge/React_Hook_Form-7.59.0-EC5990) ![React Select](https://img.shields.io/badge/React_Select-5.10.1-FF4785) |
+| **Визуализация** | ![Chart.js](https://img.shields.io/badge/Chart.js-4.5.0-FF6384?logo=chartdotjs) ![Swiper](https://img.shields.io/badge/Swiper-11.2.10-6332F6?logo=swiper) |
+| **Анимация**     | ![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.19.2-0055FF?logo=framer) |
+| **API клиент**   | ![Axios](https://img.shields.io/badge/Axios-1.10.0-5A29E4?logo=axios) |
+| **Уведомления**  | ![React Hot Toast](https://img.shields.io/badge/React_Hot_Toast-2.5.2-333333?logo=react) |
+| **Иконки**       | ![Lucide](https://img.shields.io/badge/Lucide-0.525.0-333333?logo=lucide) |
+| **Утилиты**      | ![YAML](https://img.shields.io/badge/YAML-2.8.0-FFFFFF?logo=yaml) |
+
+**Дополнительные инструменты:**
+- ![ESLint](https://img.shields.io/badge/ESLint-9.30.0-4B32C3?logo=eslint)
+- ![Prettier](https://img.shields.io/badge/Prettier-3.6.2-F7B93E?logo=prettier)
+- ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel)
 
 ### 📂 Структура проекта
 src/
