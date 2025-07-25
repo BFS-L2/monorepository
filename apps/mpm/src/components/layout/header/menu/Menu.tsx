@@ -10,11 +10,7 @@ import { useAuth } from '@/hooks/auth/useAuth'
 
 import { MenuItem } from './MenuItem'
 
-interface Props {
-	className?: string
-}
-
-export const Menu = ({ className }: Props) => {
+export const Menu = () => {
 	const { isAuthenticated, isLoading } = useAuth()
 
 	const theme = useThemeStore(state => state.theme)
