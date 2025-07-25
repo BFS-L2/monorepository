@@ -27,10 +27,10 @@ export const CoinCard = ({
 	return (
 		<div
 			className={cn(
-				'group flex cursor-pointer items-center gap-2 rounded-lg border border-transparent bg-zinc-800 p-3 transition-all duration-300',
+				'group flex cursor-pointer items-center gap-2 rounded-lg border-1 border-zinc-200 bg-white p-3 transition-all duration-300 dark:border-none dark:bg-zinc-800',
 				{
-					'hover:border-zinc-600 hover:bg-zinc-700': true,
-					'border-zinc-600 bg-zinc-700': selectedCoin === Name
+					'dark:hover:border-zinc-600 dark:hover:bg-zinc-700': true,
+					'border-teal-400 dark:border-zinc-600 dark:bg-zinc-700': selectedCoin === Name
 				}
 			)}
 			onClick={() => setCoin(Name)}
@@ -47,7 +47,7 @@ export const CoinCard = ({
 					{FullName}
 				</p>
 				<span className='flex flex-col gap-0 md:flex-row md:gap-3'>
-					<p className='font-mono text-zinc-100'>{price} $</p>
+					<p className='font-mono text-zinc-800 dark:text-white'>{price} $</p>
 					<p className='font-mono text-base text-zinc-900 dark:text-white'>
 						<span className={`ml-1 ${isPositive ? 'text-green-400' : 'text-red-400'}`}>
 							{isPositive ? '+' : ''}

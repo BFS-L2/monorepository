@@ -28,7 +28,7 @@ export const CryptoLineChart = ({ coin }: { coin: string }) => {
 
 	return (
 		<>
-			<div className='mt-4 rounded-lg bg-zinc-50 px-4 py-6 dark:bg-zinc-800'>
+			<div className='mt-4 rounded-lg border-1 border-zinc-200 bg-zinc-50 px-4 py-6 dark:border-none dark:bg-zinc-800'>
 				<h3 className='mb-4 text-base font-semibold text-zinc-900 md:text-lg dark:text-white'>
 					{coin} — {rangeToLimit[limit]} schedule
 				</h3>
@@ -42,7 +42,7 @@ export const CryptoLineChart = ({ coin }: { coin: string }) => {
 						key={key}
 						onClick={() => setLimit(Number(key) as RangeType)}
 						variant='limit'
-						className={`w-40 ${limit === (Number(key) as RangeType) ? 'bg-zinc-700' : ''}`}
+						className={`w-40 ${limit === (Number(key) as RangeType) ? 'bg-teal-400 text-white dark:bg-zinc-700' : ''}`}
 					>
 						{value}
 					</Button>
