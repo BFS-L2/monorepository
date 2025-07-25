@@ -18,7 +18,6 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => (
 		animate='animate'
 		exit='exit'
 		transition={pageTransition}
-		className='px-2'
 	>
 		{children}
 	</motion.div>

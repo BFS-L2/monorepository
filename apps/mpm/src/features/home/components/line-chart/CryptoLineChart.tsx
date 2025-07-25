@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Line } from 'react-chartjs-2'
 
 import { Button } from '@/components/ui/button/Button'
+import { Title } from '@/components/ui/title/Title'
 
 import { useHistoryData } from '@/hooks/api/useHistory'
 
@@ -28,10 +29,10 @@ export const CryptoLineChart = ({ coin }: { coin: string }) => {
 
 	return (
 		<>
-			<div className='mt-4 rounded-lg border-1 border-zinc-200 bg-zinc-50 px-4 py-6 dark:border-none dark:bg-zinc-800'>
-				<h3 className='mb-4 text-base font-semibold text-zinc-900 md:text-lg dark:text-white'>
+			<div className='mt-4 rounded-lg border-1 border-zinc-200 bg-zinc-50 px-4 py-6 dark:border-transparent dark:bg-zinc-800'>
+				<Title type='h3' className='mb-4 text-lg font-semibold'>
 					{coin} — {rangeToLimit[limit]} schedule
-				</h3>
+				</Title>
 				<div className='relative h-[300px] w-full'>
 					<Line data={data} options={options} />
 				</div>

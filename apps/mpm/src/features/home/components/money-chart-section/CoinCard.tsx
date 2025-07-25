@@ -27,10 +27,10 @@ export const CoinCard = ({
 	return (
 		<div
 			className={cn(
-				'group flex cursor-pointer items-center gap-2 rounded-lg border-1 border-zinc-200 bg-white p-3 transition-all duration-300 dark:border-none dark:bg-zinc-800',
+				'group flex cursor-pointer items-center gap-2 rounded-lg border-1 border-zinc-200 bg-white p-3 transition-all duration-300 dark:border-transparent dark:bg-zinc-800',
 				{
 					'dark:hover:border-zinc-600 dark:hover:bg-zinc-700': true,
-					'border-teal-400 dark:border-zinc-600 dark:bg-zinc-700': selectedCoin === Name
+					'border-teal-400 dark:border-transparent dark:bg-zinc-700': selectedCoin === Name
 				}
 			)}
 			onClick={() => setCoin(Name)}

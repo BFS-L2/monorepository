@@ -3,6 +3,7 @@ import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { useCurrenciesData } from '@/hooks/api/useCurrencies'
+import { useCheckDesktop } from '@/hooks/ui/useCheckDesktop'
 
 import '../news/News.css'
 
@@ -17,6 +18,7 @@ export const CoinSlider = ({
 	selectedCoin: string
 }) => {
 	const { currenciesData, isLoading } = useCurrenciesData()
+	const { isDesktop } = useCheckDesktop()
 
 	useEffect(() => {
 		if (currenciesData && currenciesData.length > 0) {
@@ -31,7 +33,7 @@ export const CoinSlider = ({
 		<Swiper
 			modules={[Navigation]}
 			spaceBetween={16}
-			navigation
+			navigation={isDesktop ? true : false}
 			autoHeight={false}
 			observer={true}
 			observeParents={false}

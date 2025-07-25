@@ -9,6 +9,7 @@ export const Home = () => {
 			<section className='container mx-auto p-4'>
 				<HeroSection />
 				<MainLiveChart />
+				{/* <TopBar /> */}
 				<NewsSection />
 				<Currencies />
 				{/* <LineChartsList /> */}

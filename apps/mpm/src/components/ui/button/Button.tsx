@@ -28,7 +28,7 @@ export const Button = ({
 				variant === 'ghost' &&
 					'cursor-pointer rounded-sm border-1 border-zinc-400 px-2 py-1 text-sm font-medium text-white transition-colors duration-300 hover:bg-zinc-300 dark:hover:bg-zinc-700',
 				variant === 'limit' &&
-					'cursor-pointer rounded-md border-1 border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium transition-colors duration-300 hover:bg-teal-400 hover:text-white dark:border-none dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700',
+					'cursor-pointer rounded-md border-1 border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium transition-colors duration-300 hover:bg-teal-400 hover:text-white dark:border-transparent dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700',
 				className
 			)}
 		>
