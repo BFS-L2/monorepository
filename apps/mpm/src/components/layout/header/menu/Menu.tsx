@@ -2,10 +2,7 @@ import { MoonIcon, SunIcon } from 'lucide-react'
 
 import { Loader } from '@/components/ui/loader/Loader'
 
-import {
-	privateHeaderItems,
-	publicHeaderItems
-} from '@/constants/navigation.constants'
+import { privateHeaderItems, publicHeaderItems } from '@/constants/navigation.constants'
 
 import { useThemeStore } from '@/store/themeStore'
 
@@ -13,7 +10,11 @@ import { useAuth } from '@/hooks/auth/useAuth'
 
 import { MenuItem } from './MenuItem'
 
-export const Menu = () => {
+interface Props {
+	className?: string
+}
+
+export const Menu = ({ className }: Props) => {
 	const { isAuthenticated, isLoading } = useAuth()
 
 	const theme = useThemeStore(state => state.theme)

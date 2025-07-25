@@ -7,7 +7,7 @@ export const parsePrice = (value?: string): number => {
 		return priceCache.get(value)!
 	}
 
-	const result = parseFloat(value.replace(/[^0-9.]/g, ''))
+	const result = parseFloat(value.replace(/[^0-9.-]/g, ''))
 
 	if (!isNaN(result)) {
 		priceCache.set(value, result)

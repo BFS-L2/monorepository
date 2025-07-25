@@ -37,7 +37,7 @@ export const useLineChart = ({
 				fill: false,
 				borderColor: 'oklch(77.7% 0.152 181.912)',
 				tension: 0.4,
-				borderWidth: 2.5,
+				borderWidth: 2,
 				pointRadius: 0,
 				pointHoverRadius: 4,
 				pointHoverBorderWidth: 2,
@@ -60,7 +60,7 @@ export const useLineChart = ({
 					font: { size: 11 }
 				},
 				grid: {
-					color: '#3f3f46',
+					color: 'transparent',
 					drawTicks: false
 				}
 			},
@@ -71,7 +71,7 @@ export const useLineChart = ({
 					count: 5
 				},
 				grid: {
-					color: '#3f3f46',
+					color: 'transparent',
 					borderDash: [1, 1],
 					drawTicks: false
 				}

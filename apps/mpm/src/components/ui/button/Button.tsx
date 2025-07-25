@@ -3,7 +3,7 @@ import { cn } from '@/utils/tailwind.utils'
 import { Loader } from '../loader/Loader'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	variant?: 'primary' | 'logout' | 'ghost'
+	variant?: 'primary' | 'logout' | 'ghost' | 'limit'
 	children: React.ReactNode
 	className?: string
 	isSubmitting?: boolean
@@ -27,6 +27,8 @@ export const Button = ({
 					'w-full cursor-pointer rounded bg-pink-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-300 hover:bg-pink-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-pink-700 dark:hover:bg-pink-800',
 				variant === 'ghost' &&
 					'cursor-pointer rounded-sm border-1 border-zinc-400 px-2 py-1 text-sm font-medium text-white transition-colors duration-300 hover:bg-zinc-300 dark:hover:bg-zinc-700',
+				variant === 'limit' &&
+					'cursor-pointer rounded-md border border-transparent bg-zinc-800 px-3 py-1.5 text-sm font-medium text-zinc-200 transition-colors duration-300 hover:bg-zinc-700 hover:text-white dark:hover:bg-zinc-600',
 				className
 			)}
 		>

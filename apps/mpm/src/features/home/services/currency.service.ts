@@ -12,12 +12,12 @@ const currencyService = {
 		return response.data
 	},
 
-	async getHistory(coin: string) {
+	async getHistory(coin: string, limit: number = 24) {
 		const response = await $axios.get(`${MIN_API_CRYPTO}/data/v2/histohour`, {
 			params: {
 				fsym: coin,
 				tsym: 'USD',
-				limit: 24
+				limit
 			}
 		})
 		return response.data

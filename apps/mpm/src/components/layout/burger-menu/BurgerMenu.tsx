@@ -3,10 +3,7 @@ import { LogOutIcon, MenuIcon, MoonIcon, SunIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button/Button'
 
-import {
-	privateHeaderItems,
-	publicBurgerMenuItems
-} from '@/constants/navigation.constants'
+import { privateHeaderItems, publicBurgerMenuItems } from '@/constants/navigation.constants'
 
 import { useThemeStore } from '@/store/themeStore'
 
@@ -14,9 +11,15 @@ import { useAuth } from '@/hooks/auth/useAuth'
 import { useLogout } from '@/hooks/auth/useLogout'
 import { useToggleModal } from '@/hooks/ui/useToggleModal'
 
+import { cn } from '@/utils/tailwind.utils'
+
 import { BurgerMenuItem } from './BurgerMenuItem'
 
-export const BurgerMenu = () => {
+interface Props {
+	className?: string
+}
+
+export const BurgerMenu = ({ className }: Props) => {
 	const { user, isAuthenticated } = useAuth()
 
 	const theme = useThemeStore(state => state.theme)
@@ -28,7 +31,7 @@ export const BurgerMenu = () => {
 
 	return (
 		<div className='md:hidden'>
-			<div className='flex items-center justify-end'>
+			<div className={cn('flex items-center justify-end', className)}>
 				<button onClick={handleShowMenu} className='cursor-pointer'>
 					<MenuIcon className='h-8 w-8 rounded p-1.5 text-zinc-900 transition-colors duration-300 hover:bg-teal-200 dark:text-white dark:hover:bg-zinc-700' />
 				</button>
@@ -74,9 +77,7 @@ export const BurgerMenu = () => {
 														alt={user?.name}
 														className='h-12 w-12 rounded-lg object-cover'
 													/>
-													<span className='text-lg font-bold text-teal-400'>
-														{user?.name}
-													</span>
+													<span className='text-lg font-bold text-teal-400'>{user?.name}</span>
 												</div>
 											</div>
 
