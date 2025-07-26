@@ -1,4 +1,4 @@
-export * from './components/HeroSection'
+export * from './components/hero-section/HeroSection.tsx'
 
 export * from './components/line-chart/CryptoLineChart.tsx'
 export * from './components/line-chart/LineChartsList'

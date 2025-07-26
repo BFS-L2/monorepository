@@ -9,3 +9,7 @@
 .scrollbar-hide::-webkit-scrollbar {
 	display: none; /* Safari и Chrome */
 }
+
+html {
+	scroll-behavior: smooth;
+}

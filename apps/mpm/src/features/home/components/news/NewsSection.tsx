@@ -5,17 +5,32 @@ import { Title } from '@/components/ui/title/Title'
 
 import { useNewsData } from '@/hooks/api/useNews'
 
+import { useIntersectionSection } from '../../hooks/useIntersectionSection'
+
 import './News.css'
 import { NewsCard } from './NewsCard'
 import { NewsCardSkeleton } from './NewsCardSkeleton'
 
-export const NewsSection = () => {
+export const NewsSection = ({
+	sectionKey,
+	sectionsValue
+}: {
+	sectionKey: string
+	sectionsValue: string
+}) => {
 	const { newsData, isLoading } = useNewsData()
 
+	const { intersectionRef } = useIntersectionSection(sectionKey)
+
 	return (
-		<section className='pb-10 md:pb-20'>
+		<section
+			className='container mx-auto px-2 pb-10 md:pb-20'
+			id={sectionKey}
+			ref={intersectionRef}
+			style={{ scrollMarginTop: '65px' }}
+		>
 			<Title className='mb-4' type='h2'>
-				Latest news
+				{sectionsValue}
 			</Title>
 
 			{(isLoading || newsData?.length) && (

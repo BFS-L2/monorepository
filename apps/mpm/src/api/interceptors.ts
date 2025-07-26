@@ -4,7 +4,7 @@ import { BASE_URL } from '@/constants/api.constants'
 
 import { queryClient } from '@/utils/queryClient'
 
-export const $axios = axios.create({
+export const apiClient = axios.create({
 	baseURL: BASE_URL,
 	withCredentials: true,
 	headers: {
@@ -12,7 +12,13 @@ export const $axios = axios.create({
 	}
 })
 
-$axios.interceptors.response.use(
+export const externalApi = axios.create({
+	headers: {
+		'Content-Type': 'application/json'
+	}
+})
+
+apiClient.interceptors.response.use(
 	res => res,
 	error => {
 		if (error.response?.status === 401) {

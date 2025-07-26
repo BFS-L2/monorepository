@@ -14,7 +14,7 @@ export const CoinCard = ({
 	setCoin: (coin: string) => void
 	selectedCoin: string
 }) => {
-	const FullName = coin?.CoinInfo?.FullName
+	const FullName = coin?.CoinInfo?.Name
 	const Name = coin?.CoinInfo?.Name
 	const ImageUrl = coin?.CoinInfo?.ImageUrl
 
