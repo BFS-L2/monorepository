@@ -1,3 +1,5 @@
+import { useShallow } from 'zustand/react/shallow'
+
 import { MAIN_SECTIONS } from '@/constants/enums.constants'
 
 import { useIntersectionStore } from '@/store/sectionsStore'
@@ -9,8 +11,13 @@ interface Props {
 }
 
 export const TopBar = ({ className }: Props) => {
-	const activeKey = useIntersectionStore(state => state.activeKey)
-	const setActiveKey = useIntersectionStore(state => state.setActiveKey)
+	const { activeKey, setActiveKey } = useIntersectionStore(
+		useShallow(state => ({
+			activeKey: state.activeKey,
+			setActiveKey: state.setActiveKey
+		}))
+	)
+
 	const sections = Object.entries(MAIN_SECTIONS)
 
 	return (

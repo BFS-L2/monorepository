@@ -12,6 +12,7 @@
 		"prettier:fix": "prettier --write ."
 	},
 	"dependencies": {
+		"@react-hook/throttle": "^2.2.0",
 		"@tailwindcss/vite": "^4.1.11",
 		"@tanstack/react-query": "^5.83.0",
 		"@tanstack/react-query-devtools": "^5.83.0",
@@ -25,6 +26,7 @@
 		"react-dom": "^19.1.0",
 		"react-hook-form": "^7.61.1",
 		"react-hot-toast": "^2.5.2",
+		"react-intersection-observer": "^9.16.0",
 		"react-router-dom": "^7.7.1",
 		"react-select": "^5.10.2",
 		"swiper": "^11.2.10",
