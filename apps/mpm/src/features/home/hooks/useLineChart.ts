@@ -9,18 +9,12 @@ import {
 	Tooltip
 } from 'chart.js'
 
-import type { ChartItem, ChartResponse } from '@/shared/types/currencies.types'
+import type { HistoricalChart } from '../types'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Title, Filler)
 
-export const useLineChart = ({
-	historyData,
-	coin
-}: {
-	historyData: ChartResponse
-	coin: string
-}) => {
-	const chartData = historyData?.Data?.map((item: ChartItem) => ({
+export const useLineChart = (historyData: HistoricalChart | undefined, coin: string) => {
+	const chartData = historyData?.Data?.map(item => ({
 		time: new Date(item.time * 1000).toLocaleTimeString('ru-RU', {
 			hour: '2-digit',
 			minute: '2-digit'

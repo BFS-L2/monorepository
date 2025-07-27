@@ -1,7 +1,7 @@
 import { ArrowBigDown, ArrowBigUp, Clock, X } from 'lucide-react'
 
-import { parsePrice } from '@/utils/parsePrice.utils'
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
+import { parsePrice } from '@/utils/parsePrice'
 
 import type { CurrencyData } from '@/shared/types/currencies.types'
 

@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useAuth } from '../auth/useAuth'
 
-import { transactionsService } from '@/features/transactions'
+import { type TransactionsResponse, transactionsService } from '@/features/transactions'
 
 export const useTransactions = (limit: number) => {
 	const { isAuthenticated } = useAuth()
@@ -12,10 +12,11 @@ export const useTransactions = (limit: number) => {
 		isLoading,
 		isError,
 		isSuccess
-	} = useQuery({
+	} = useQuery<TransactionsResponse>({
 		queryKey: ['transactions'],
 		queryFn: () => transactionsService.getTransactions(limit),
-		staleTime: 30 * 60 * 1000,
+		staleTime: 60 * 60 * 1000,
+		gcTime: 120 * 60_000,
 		enabled: isAuthenticated
 	})
 

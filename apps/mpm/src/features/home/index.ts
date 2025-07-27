@@ -1,23 +1,16 @@
-export * from './components/hero-section/HeroSection.tsx'
-
-export * from './components/line-chart/CryptoLineChart.tsx'
-export * from './components/line-chart/LineChartsList'
-
-export * from './components/currencies/CoinCard.tsx'
+export * from './components/comparison/ComparisonList.tsx'
 export * from './components/currencies/CurrenciesList.tsx'
-export * from './components/currencies/CurrencyCard.tsx'
-export * from './components/currencies/CurrencyDetails.tsx'
-export * from './components/currencies/CurrencyHeader.tsx'
-
-export * from './components/comparison/ComparisonCard.tsx'
-export * from './components/comparison/ComparisonCoins.tsx'
-
-export * from './components/news/NewsCard.tsx'
+export * from './components/future-crypto-section/FutureCrypto.tsx'
+export * from './components/hero-section/HeroSection.tsx'
+export * from './components/line-chart/LineChartsList'
+export * from './components/money-chart-section/MainLiveChart.tsx'
 export * from './components/news/NewsSection.tsx'
+export * from './components/top-bar/TopBar.tsx'
 
 export * from './hooks/useActiveCoinId'
-export * from './hooks/useLineChart'
+export * from './hooks/useIntersectionSection'
 export * from './hooks/usePriceDirection'
+export * from './hooks/useSortedCurrencies'
 
 export * from './services/currency.service'
 export * from './types'

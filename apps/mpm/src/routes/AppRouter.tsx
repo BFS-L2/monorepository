@@ -22,7 +22,7 @@ const Profile = lazy(() =>
 	}))
 )
 const Login = lazy(() =>
-	import('@/pages//Login/Login').then(module => ({
+	import('@/pages/Login/Login').then(module => ({
 		default: module.Login
 	}))
 )

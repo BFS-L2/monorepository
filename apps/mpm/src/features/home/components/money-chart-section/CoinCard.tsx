@@ -1,7 +1,7 @@
 import { CRYPTO_COMPARE } from '@/constants/api.constants'
 
-import { parsePrice } from '@/utils/parsePrice.utils'
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
+import { parsePrice } from '@/utils/parsePrice'
 
 import type { CurrencyData } from '@/shared/types/currencies.types'
 

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import type { MainInfo } from '@/features/home'
+import type { MainInfoResponse } from '@/features/home'
 import currencyService from '@/features/home/services/currency.service'
 
 export const useMainInfoData = () => {
@@ -9,10 +9,11 @@ export const useMainInfoData = () => {
 		isLoading,
 		isError,
 		isSuccess
-	} = useQuery<MainInfo[]>({
+	} = useQuery<MainInfoResponse>({
 		queryKey: ['mainInfo'],
 		queryFn: () => currencyService.getMainInfo(),
-		staleTime: 60 * 60 * 1000
+		staleTime: 60 * 60_000,
+		gcTime: 120 * 60_000
 	})
 
 	const mainData = mainInfo?.[0]

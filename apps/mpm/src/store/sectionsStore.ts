@@ -7,5 +7,9 @@ interface SectionsStore {
 
 export const useIntersectionStore = create<SectionsStore>(set => ({
 	activeKey: 'coins',
-	setActiveKey: key => set({ activeKey: key })
+	setActiveKey: key =>
+		set(state => {
+			if (state.activeKey === key) return state
+			return { activeKey: key }
+		})
 }))

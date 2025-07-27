@@ -1,4 +1,4 @@
-import { parsePrice } from '@/utils/parsePrice.utils'
+import { parsePrice } from '@/utils/parsePrice'
 
 import type { IWalletSection } from '../types'
 

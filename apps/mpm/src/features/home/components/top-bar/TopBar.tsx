@@ -4,19 +4,14 @@ import { MAIN_SECTIONS } from '@/constants/enums.constants'
 
 import { useIntersectionStore } from '@/store/sectionsStore'
 
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
 
 interface Props {
 	className?: string
 }
 
 export const TopBar = ({ className }: Props) => {
-	const { activeKey, setActiveKey } = useIntersectionStore(
-		useShallow(state => ({
-			activeKey: state.activeKey,
-			setActiveKey: state.setActiveKey
-		}))
-	)
+	const activeKey = useIntersectionStore(useShallow(state => state.activeKey))
 
 	const sections = Object.entries(MAIN_SECTIONS)
 
@@ -28,7 +23,6 @@ export const TopBar = ({ className }: Props) => {
 						<a
 							href={`/#${key}`}
 							key={key}
-							onClick={() => setActiveKey(key)}
 							className={cn(
 								'shrink-0 cursor-pointer rounded-full px-4 py-1 text-zinc-800 transition-colors duration-300 hover:bg-zinc-700 hover:text-white dark:text-white',
 								{

@@ -2,9 +2,7 @@ import { PageWrapper } from '@/components/ui/pageWrapper/PageWrapper'
 
 import { MAIN_SECTIONS } from '@/constants/enums.constants'
 
-import { Currencies, HeroSection, NewsSection } from '@/features/home'
-import { MainLiveChart } from '@/features/home/components/money-chart-section/MainLiveChart'
-import { TopBar } from '@/features/home/components/top-bar/TopBar'
+import { Currencies, HeroSection, MainLiveChart, NewsSection, TopBar } from '@/features/home'
 
 export const Home = () => {
 	return (

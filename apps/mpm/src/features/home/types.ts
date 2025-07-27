@@ -13,3 +13,26 @@ export interface MainInfo {
 }
 
 export type MainInfoResponse = MainInfo[]
+
+export interface HistoricalDataPoint {
+	time: number
+	high: number
+	low: number
+	open: number
+	close: number
+	volumefrom: number
+	volumeto: number
+	conversionType: 'direct' | 'invert' | 'internal' | string
+	conversionSymbol: string
+}
+
+export interface HistoricalChart {
+	Aggregated: boolean
+	Data: HistoricalDataPoint[]
+	TimeFrom: number
+	TimeTo: number
+}
+
+export interface HistoricalChartResponse {
+	Data: HistoricalChart
+}

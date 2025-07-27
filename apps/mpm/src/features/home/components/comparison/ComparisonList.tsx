@@ -2,8 +2,8 @@ import { BarChart2, ClipboardList, DollarSign, Star, TrendingUp } from 'lucide-r
 
 import { Title } from '@/components/ui/title/Title'
 
-import { parsePrice } from '@/utils/parsePrice.utils'
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
+import { parsePrice } from '@/utils/parsePrice'
 
 import { ComparisonCard } from './ComparisonCard'
 import type { CurrencyData } from '@/shared/types/currencies.types'

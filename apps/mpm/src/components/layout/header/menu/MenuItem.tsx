@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 import type { MenuItemProps } from '@/constants/navigation.constants'
 
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
 
 interface IMenuItem {
 	menuItem: MenuItemProps

@@ -1,8 +1,10 @@
-import { formatBigInt } from '@/utils/formatBigInt.utils'
+import { memo } from 'react'
+
+import { formatBigInt } from '@/utils/formatBigInt'
 
 import type { MainInfo } from '../../types'
 
-export const InfoBlock = ({ mainData }: { mainData: MainInfo }) => {
+export const InfoBlock = memo(({ mainData }: { mainData: MainInfo }) => {
 	return (
 		<div className='mb-5 grid w-full max-w-2xl grid-cols-1 gap-2 sm:grid-cols-3'>
 			<div className='rounded bg-zinc-600/35 px-3 py-2 backdrop-blur-xs'>
@@ -29,4 +31,4 @@ export const InfoBlock = ({ mainData }: { mainData: MainInfo }) => {
 			</div>
 		</div>
 	)
-}
+})

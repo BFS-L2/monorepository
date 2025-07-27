@@ -17,7 +17,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		queryKey: ['profile'],
 		queryFn: userService.getProfile,
 		retry: false,
-		staleTime: 10 * 60 * 1000
+		staleTime: 60 * 60_000,
+		gcTime: 120 * 60_000
 	})
 
 	const isAuthenticated = !!user

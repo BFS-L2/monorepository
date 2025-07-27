@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import currencyService from '@/features/home/services/currency.service'
+import type { NewsResponse } from '@/shared/types/currencies.types'
 
 export const useNewsData = () => {
 	const {
@@ -8,11 +9,12 @@ export const useNewsData = () => {
 		isLoading,
 		isError,
 		isSuccess
-	} = useQuery({
+	} = useQuery<NewsResponse>({
 		queryKey: ['news'],
 		queryFn: () => currencyService.getNews(),
-		staleTime: 30 * 60 * 1000,
-		refetchInterval: 10 * 60 * 1000,
+		staleTime: 30 * 60_000,
+		gcTime: 60 * 60_000,
+		refetchInterval: 15 * 60_000,
 		refetchIntervalInBackground: true
 	})
 

@@ -11,7 +11,7 @@ import { useAuth } from '@/hooks/auth/useAuth'
 import { useLogout } from '@/hooks/auth/useLogout'
 import { useToggleModal } from '@/hooks/ui/useToggleModal'
 
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
 
 import { BurgerMenuItem } from './BurgerMenuItem'
 

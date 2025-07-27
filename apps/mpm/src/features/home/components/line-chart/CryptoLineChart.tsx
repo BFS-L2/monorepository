@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { Line } from 'react-chartjs-2'
 
 import { Button } from '@/components/ui/button/Button'
@@ -18,12 +18,11 @@ const rangeToLimit = {
 
 type RangeType = keyof typeof rangeToLimit
 
-export const CryptoLineChart = ({ coin }: { coin: string }) => {
+export const CryptoLineChart = memo(({ coin }: { coin: string }) => {
 	const [limit, setLimit] = useState<RangeType>(168)
 
 	const { historyData, isLoading } = useHistoryData(coin, limit)
-
-	const { data, options } = useLineChart({ historyData, coin })
+	const { data, options } = useLineChart(historyData, coin)
 
 	if (isLoading || !historyData) return <CryptoChartSkeleton />
 
@@ -51,4 +50,4 @@ export const CryptoLineChart = ({ coin }: { coin: string }) => {
 			</div>
 		</>
 	)
-}
+})

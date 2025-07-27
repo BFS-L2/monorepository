@@ -1,16 +1,11 @@
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
 
-export interface InputProps
-	extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	variant?: 'auth' | 'profile'
 	className?: string
 }
 
-export const Input = ({
-	variant = 'auth',
-	className,
-	...props
-}: InputProps) => {
+export const Input = ({ variant = 'auth', className, ...props }: InputProps) => {
 	return (
 		<input
 			{...props}

@@ -2,8 +2,8 @@ import { Coins, TrendingDown, TrendingUp, Wallet } from 'lucide-react'
 
 import { CRYPTO_COMPARE } from '@/constants/api.constants'
 
-import { FormatDate } from '@/utils/formatDate.utils'
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
+import { FormatDate } from '@/utils/formatDate'
 
 import type { ITransactionsItem } from '../types'
 

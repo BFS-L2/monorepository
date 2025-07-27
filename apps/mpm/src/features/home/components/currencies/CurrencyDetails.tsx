@@ -1,7 +1,7 @@
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
 
-import { parsePrice } from '@/utils/parsePrice.utils'
-import { cn } from '@/utils/tailwind.utils'
+import { cn } from '@/utils/cn'
+import { parsePrice } from '@/utils/parsePrice'
 
 import { usePriceDirection } from '../../hooks/usePriceDirection'
 

@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 
-import { parsePrice } from '@/utils/parsePrice.utils'
+import { parsePrice } from '@/utils/parsePrice'
 
 import type { CoinConverterProps } from '../types'
 

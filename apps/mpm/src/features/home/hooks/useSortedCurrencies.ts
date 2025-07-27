@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 
-import { parsePrice } from '@/utils/parsePrice.utils'
+import { parsePrice } from '@/utils/parsePrice'
 
 import type { CurrencyData } from '@/shared/types/currencies.types'
 
